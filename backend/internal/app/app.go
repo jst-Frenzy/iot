@@ -13,5 +13,5 @@ func New(d *Deps) *App {
 }
 
 func (a *App) Start() {
-	fmt.Println("F*ck The Industry!")
+	fmt.Println("F*ck The Industry!!")
 }
