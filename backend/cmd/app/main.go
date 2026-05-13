@@ -1,7 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"github.com/jst-Frenzy/iot/backend/internal/app"
+)
 
 func main() {
-	fmt.Println("F*ck The Industry")
+	application := app.New(&app.Deps{})
+
+	application.Start()
 }
