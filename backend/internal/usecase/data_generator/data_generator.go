@@ -6,7 +6,7 @@ type Deps struct {
 type DataGenerator struct {
 }
 
-func NewDataGenerator(d *Deps) *DataGenerator {
+func NewDataGenerator(d *Deps) *DataGenerator { //nolint: revive
 	return &DataGenerator{}
 }
 

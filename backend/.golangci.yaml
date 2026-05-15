@@ -1,0 +1,77 @@
+version: "2"
+run:
+  concurrency: 8
+  allow-parallel-runners: true
+linters:
+  enable:
+    - asciicheck
+    - bidichk
+    - bodyclose
+    - copyloopvar
+    - dogsled
+    - dupl
+    - durationcheck
+    - errname
+    - errorlint
+    - forbidigo
+    - forcetypeassert
+    - funlen
+    - gocritic
+    - gocyclo
+    - godot
+    - goheader
+    - gomodguard
+    - goprintffuncname
+    - gosec
+    - importas
+    - lll
+    - makezero
+    - misspell
+    - nilerr
+    - nilnil
+    - noctx
+    - prealloc
+    - predeclared
+    - promlinter
+    - revive
+    - thelper
+    - tparallel
+    - unconvert
+    - unparam
+  settings:
+    dupl:
+      threshold: 200
+    errcheck:
+      check-type-assertions: true
+      check-blank: true
+    funlen:
+      lines: 200
+      statements: 50
+    gocyclo:
+      min-complexity: 20
+    gosec:
+      excludes:
+        - G402
+        - G106
+    lll:
+      line-length: 120
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  enable:
+    - goimports
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
