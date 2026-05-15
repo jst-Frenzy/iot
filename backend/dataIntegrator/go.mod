@@ -1,4 +1,4 @@
-module github.com/jst-Frenzy/iot/backend
+module github.com/jst-Frenzy/iot/backend/dataIntegrator
 
 go 1.26.2
 
