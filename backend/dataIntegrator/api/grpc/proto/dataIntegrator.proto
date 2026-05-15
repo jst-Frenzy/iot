@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package trading;
+
+option go_package = "github.com/jst-Frenzy/iot/backend/dataIntegrator/api/grpc/gen;dataIntegrator";
+
+service DataIntegratorService {
+  rpc testCall(testCallRequest) returns (testCallResponse);
+}
+
+message testCallRequest{
+  string data = 1;
+}
+
+message testCallResponse{
+  string data = 1;
+}

@@ -13,12 +13,10 @@ proto-gen:
 	@protoc --version
 	@protoc \
 		--experimental_allow_proto3_optional \
-		--proto_path= \
+		--proto_path=. \
 		--go_out=./api/grpc/gen \
-		--go_opt=module=gl.iteco.com/technology/go_masterdata/preorderservice/api/grpc/gen \
+		--go_opt=module=github.com/jst-Frenzy/iot/backend/device/api/grpc/gen \
 		--go-grpc_out=./api/grpc/gen \
-		--go-grpc_opt=module=gl.iteco.com/technology/go_masterdata/preorderservice/api/grpc/gen \
-		./api/grpc/proto/preorders/preorders.proto \
-		./api/grpc/proto/offers/offers.proto \
-		./api/grpc/proto/trades/trades.proto
+		--go-grpc_opt=module=github.com/jst-Frenzy/iot/backend/device/api/grpc/gen \
+		./api/grpc/proto/device.proto \
 	@echo "[OK] Protobuf code generated successfully!"

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package trading;
+
+option go_package = "github.com/jst-Frenzy/iot/backend/device/api/grpc/gen;device";
+
+service DeviceService {
+  rpc testCall(testCallRequest) returns (testCallResponse);
+}
+
+message testCallRequest{
+  string data = 1;
+}
+
+message testCallResponse{
+  string data = 1;
+}
