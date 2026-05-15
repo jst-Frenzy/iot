@@ -3,11 +3,11 @@ package grpc
 import (
 	"context"
 	"errors"
+	"github.com/jst-Frenzy/iot/backend/dataIntegrator/internal/config/configuration"
 	"log/slog"
 	"net"
 	"time"
 
-	"github.com/jst-Frenzy/iot/backend/internal/config/configuration"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )

@@ -14,12 +14,12 @@ on:
 
 jobs:
   lint:
-    name: Go Linters
+    name: go linters dataIntegrator
     runs-on: ubuntu-latest
 
     defaults:
       run:
-        working-directory: backend
+        working-directory: backend/dataIntegrator
 
     steps:
       - name: CheckOut
@@ -29,7 +29,7 @@ jobs:
         uses: actions/setup-go@v6
         with:
           go-version: '1.26.2'
-          cache-dependency-path: ./backend/go.sum
+          cache-dependency-path: ./backend/dataIntegrator/go.sum
 
       - name: Download dependencies
         run: go mod download
@@ -38,4 +38,3 @@ jobs:
         uses: golangci/golangci-lint-action@v9
         with:
           version: latest
-          working-directory: ./backend

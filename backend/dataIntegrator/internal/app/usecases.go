@@ -1,6 +1,8 @@
 package app
 
-import dg "github.com/jst-Frenzy/iot/backend/internal/usecase/data_generator"
+import (
+	dg "github.com/jst-Frenzy/iot/backend/dataIntegrator/internal/usecase/data_generator"
+)
 
 type Usecases struct {
 	DataGenerator *dg.DataGenerator

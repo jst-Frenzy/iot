@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/jst-Frenzy/iot/backend/internal/app"
+	"github.com/jst-Frenzy/iot/backend/dataIntegrator/internal/app"
 )
 
 func main() {
