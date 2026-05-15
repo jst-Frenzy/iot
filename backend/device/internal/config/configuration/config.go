@@ -1,0 +1,51 @@
+package configuration
+
+import (
+	"fmt"
+	"time"
+
+	"github.com/go-playground/validator/v10"
+
+	"github.com/spf13/viper"
+)
+
+const _defaultConfigPath = "config.yaml"
+
+type Config struct {
+}
+
+type RESTServer struct {
+	ListenPort        string        `mapstructure:"ListenPort"        validate:"required"`
+	ReadTimeout       time.Duration `mapstructure:"ReadTimeout"       validate:"required"`
+	WriteTimeout      time.Duration `mapstructure:"WriteTimeout"      validate:"required"`
+	ShutdownTimeout   time.Duration `mapstructure:"ShutdownTimeout"   validate:"required"`
+	ReadHeaderTimeout time.Duration `mapstructure:"ReadHeaderTimeout" validate:"required"`
+	IdleTimeout       time.Duration `mapstructure:"IdleTimeout"       validate:"required"`
+	MaxHeaderBytes    int           `mapstructure:"MaxHeaderBytes"    validate:"required"`
+}
+
+type GRPCServer struct {
+	Address           string `mapstructure:"Address"           validate:"required"`
+	MaxReceiveMsgSize int    `mapstructure:"MaxReceiveMsgSize" validate:"gte=0"`
+	MaxSendMsgSize    int    `mapstructure:"MaxSendMsgSize"    validate:"gte=0"`
+}
+
+func New() (*Config, error) {
+	vp := viper.New()
+
+	vp.SetConfigFile(_defaultConfigPath)
+	if err := vp.ReadInConfig(); err != nil {
+		return nil, fmt.Errorf("reading config: %w", err)
+	}
+
+	var conf Config
+	if err := vp.Unmarshal(&conf); err != nil {
+		return nil, fmt.Errorf("unmarshal config: %w", err)
+	}
+
+	if err := validator.New().Struct(&conf); err != nil {
+		return nil, fmt.Errorf("validate config: %w", err)
+	}
+
+	return &conf, nil
+}
