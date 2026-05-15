@@ -119,7 +119,7 @@ const file_api_grpc_proto_device_proto_rawDesc = "" +
 	"\x10testCallResponse\x12\x12\n" +
 	"\x04data\x18\x01 \x01(\tR\x04data2P\n" +
 	"\rDeviceService\x12?\n" +
-	"\btestCall\x12\x18.trading.testCallRequest\x1a\x19.trading.testCallResponseB>Z<github.com/jst-Frenzy/iot/backend/device/api/grpc/gen;deviceb\x06proto3"
+	"\btestCall\x12\x18.trading.testCallRequest\x1a\x19.trading.testCallResponseB>Z<github.com/jst-Frenzy/iot/backend/temperatureSensor/api/grpc/gen;deviceb\x06proto3"
 
 var (
 	file_api_grpc_proto_device_proto_rawDescOnce sync.Once

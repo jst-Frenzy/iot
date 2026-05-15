@@ -1,4 +1,4 @@
-module github.com/jst-Frenzy/iot/backend/device
+module github.com/jst-Frenzy/iot/backend/temperatureSensor
 
 go 1.25.0
 

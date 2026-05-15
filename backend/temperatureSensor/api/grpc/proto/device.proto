@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package trading;
 
-option go_package = "github.com/jst-Frenzy/iot/backend/device/api/grpc/gen;device";
+option go_package = "github.com/jst-Frenzy/iot/backend/temperatureSensor/api/grpc/gen;temperatureSensor";
 
 service DeviceService {
   rpc testCall(testCallRequest) returns (testCallResponse);
