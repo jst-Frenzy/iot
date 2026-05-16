@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package trading;
+package dataIntegrator;
 
 option go_package = "github.com/jst-Frenzy/iot/backend/dataIntegrator/api/grpc/gen;dataIntegrator";
 

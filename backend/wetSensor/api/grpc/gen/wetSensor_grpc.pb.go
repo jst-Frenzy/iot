@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	WetSensorService_GetData_FullMethodName = "/trading.WetSensorService/GetData"
+	WetSensorService_GetData_FullMethodName = "/wetSensor.WetSensorService/GetData"
 )
 
 // WetSensorServiceClient is the client API for WetSensorService service.
@@ -108,7 +108,7 @@ func _WetSensorService_GetData_Handler(srv interface{}, ctx context.Context, dec
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var WetSensorService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "trading.WetSensorService",
+	ServiceName: "wetSensor.WetSensorService",
 	HandlerType: (*WetSensorServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

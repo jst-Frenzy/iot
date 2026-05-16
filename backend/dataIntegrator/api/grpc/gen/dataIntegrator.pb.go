@@ -113,14 +113,14 @@ var File_api_grpc_proto_dataIntegrator_proto protoreflect.FileDescriptor
 
 const file_api_grpc_proto_dataIntegrator_proto_rawDesc = "" +
 	"\n" +
-	"#api/grpc/proto/dataIntegrator.proto\x12\atrading\"G\n" +
+	"#api/grpc/proto/dataIntegrator.proto\x12\x0edataIntegrator\"G\n" +
 	"\x11acceptDataRequest\x12\x10\n" +
 	"\x03wet\x18\x01 \x01(\x05R\x03wet\x12 \n" +
 	"\vtemperature\x18\x02 \x01(\x05R\vtemperature\"\x14\n" +
-	"\x12acceptDataResponse2^\n" +
-	"\x15DataIntegratorService\x12E\n" +
+	"\x12acceptDataResponse2l\n" +
+	"\x15DataIntegratorService\x12S\n" +
 	"\n" +
-	"acceptData\x12\x1a.trading.acceptDataRequest\x1a\x1b.trading.acceptDataResponseBNZLgithub.com/jst-Frenzy/iot/backend/dataIntegrator/api/grpc/gen;dataIntegratorb\x06proto3"
+	"acceptData\x12!.dataIntegrator.acceptDataRequest\x1a\".dataIntegrator.acceptDataResponseBNZLgithub.com/jst-Frenzy/iot/backend/dataIntegrator/api/grpc/gen;dataIntegratorb\x06proto3"
 
 var (
 	file_api_grpc_proto_dataIntegrator_proto_rawDescOnce sync.Once
@@ -136,12 +136,12 @@ func file_api_grpc_proto_dataIntegrator_proto_rawDescGZIP() []byte {
 
 var file_api_grpc_proto_dataIntegrator_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_api_grpc_proto_dataIntegrator_proto_goTypes = []any{
-	(*AcceptDataRequest)(nil),  // 0: trading.acceptDataRequest
-	(*AcceptDataResponse)(nil), // 1: trading.acceptDataResponse
+	(*AcceptDataRequest)(nil),  // 0: dataIntegrator.acceptDataRequest
+	(*AcceptDataResponse)(nil), // 1: dataIntegrator.acceptDataResponse
 }
 var file_api_grpc_proto_dataIntegrator_proto_depIdxs = []int32{
-	0, // 0: trading.DataIntegratorService.acceptData:input_type -> trading.acceptDataRequest
-	1, // 1: trading.DataIntegratorService.acceptData:output_type -> trading.acceptDataResponse
+	0, // 0: dataIntegrator.DataIntegratorService.acceptData:input_type -> dataIntegrator.acceptDataRequest
+	1, // 1: dataIntegrator.DataIntegratorService.acceptData:output_type -> dataIntegrator.acceptDataResponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

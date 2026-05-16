@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DataIntegratorService_AcceptData_FullMethodName = "/trading.DataIntegratorService/acceptData"
+	DataIntegratorService_AcceptData_FullMethodName = "/dataIntegrator.DataIntegratorService/acceptData"
 )
 
 // DataIntegratorServiceClient is the client API for DataIntegratorService service.
@@ -108,7 +108,7 @@ func _DataIntegratorService_AcceptData_Handler(srv interface{}, ctx context.Cont
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var DataIntegratorService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "trading.DataIntegratorService",
+	ServiceName: "dataIntegrator.DataIntegratorService",
 	HandlerType: (*DataIntegratorServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

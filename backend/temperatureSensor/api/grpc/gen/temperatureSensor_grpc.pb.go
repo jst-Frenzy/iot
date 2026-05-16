@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TemperatureSensorService_GetData_FullMethodName = "/trading.TemperatureSensorService/GetData"
+	TemperatureSensorService_GetData_FullMethodName = "/temperatureSensor.TemperatureSensorService/GetData"
 )
 
 // TemperatureSensorServiceClient is the client API for TemperatureSensorService service.
@@ -109,7 +109,7 @@ func _TemperatureSensorService_GetData_Handler(srv interface{}, ctx context.Cont
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var TemperatureSensorService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "trading.TemperatureSensorService",
+	ServiceName: "temperatureSensor.TemperatureSensorService",
 	HandlerType: (*TemperatureSensorServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

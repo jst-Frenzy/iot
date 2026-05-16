@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package trading;
+package wetSensor;
 
 option go_package = "github.com/jst-Frenzy/iot/backend/wetSensor/api/grpc/gen;wetSensor";
 

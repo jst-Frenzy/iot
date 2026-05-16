@@ -105,12 +105,12 @@ var File_api_grpc_proto_wetSensor_proto protoreflect.FileDescriptor
 
 const file_api_grpc_proto_wetSensor_proto_rawDesc = "" +
 	"\n" +
-	"\x1eapi/grpc/proto/wetSensor.proto\x12\atrading\"\x10\n" +
+	"\x1eapi/grpc/proto/wetSensor.proto\x12\twetSensor\"\x10\n" +
 	"\x0eGetDataRequest\"%\n" +
 	"\x0fGetDataResponse\x12\x12\n" +
-	"\x04data\x18\x01 \x01(\x05R\x04data2P\n" +
-	"\x10WetSensorService\x12<\n" +
-	"\aGetData\x12\x17.trading.GetDataRequest\x1a\x18.trading.GetDataResponseBDZBgithub.com/jst-Frenzy/iot/backend/wetSensor/api/grpc/gen;wetSensorb\x06proto3"
+	"\x04data\x18\x01 \x01(\x05R\x04data2T\n" +
+	"\x10WetSensorService\x12@\n" +
+	"\aGetData\x12\x19.wetSensor.GetDataRequest\x1a\x1a.wetSensor.GetDataResponseBDZBgithub.com/jst-Frenzy/iot/backend/wetSensor/api/grpc/gen;wetSensorb\x06proto3"
 
 var (
 	file_api_grpc_proto_wetSensor_proto_rawDescOnce sync.Once
@@ -126,12 +126,12 @@ func file_api_grpc_proto_wetSensor_proto_rawDescGZIP() []byte {
 
 var file_api_grpc_proto_wetSensor_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_api_grpc_proto_wetSensor_proto_goTypes = []any{
-	(*GetDataRequest)(nil),  // 0: trading.GetDataRequest
-	(*GetDataResponse)(nil), // 1: trading.GetDataResponse
+	(*GetDataRequest)(nil),  // 0: wetSensor.GetDataRequest
+	(*GetDataResponse)(nil), // 1: wetSensor.GetDataResponse
 }
 var file_api_grpc_proto_wetSensor_proto_depIdxs = []int32{
-	0, // 0: trading.WetSensorService.GetData:input_type -> trading.GetDataRequest
-	1, // 1: trading.WetSensorService.GetData:output_type -> trading.GetDataResponse
+	0, // 0: wetSensor.WetSensorService.GetData:input_type -> wetSensor.GetDataRequest
+	1, // 1: wetSensor.WetSensorService.GetData:output_type -> wetSensor.GetDataResponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

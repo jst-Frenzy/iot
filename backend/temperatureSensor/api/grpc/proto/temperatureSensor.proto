@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package trading;
+package temperatureSensor;
 
 option go_package = "github.com/jst-Frenzy/iot/backend/temperatureSensor/api/grpc/gen;temperatureSensor";
 

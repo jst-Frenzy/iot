@@ -1,5 +1,40 @@
 package main
 
-func main() {
+import (
+	"context"
+	"github.com/jst-Frenzy/iot/backend/dataController/internal/app"
+	"github.com/jst-Frenzy/iot/backend/dataController/internal/config/configuration"
+	"github.com/jst-Frenzy/iot/backend/dataController/internal/config/credentials"
 
+	"log/slog"
+	"os/signal"
+	"syscall"
+)
+
+func main() {
+	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
+	defer stop()
+
+	conf, err := configuration.New()
+	if err != nil {
+		slog.Error("cannot create config", "error", err)
+		return
+	}
+
+	cred, err := credentials.New()
+	if err != nil {
+		slog.Error("cannot create cred", "error", err)
+		return
+	}
+
+	application, err := app.New(ctx, conf, cred)
+	if err != nil {
+		slog.Error("cannot create app", "error", err)
+		return
+	}
+
+	application.Start(ctx)
+
+	slog.Info("started")
+	<-ctx.Done()
 }

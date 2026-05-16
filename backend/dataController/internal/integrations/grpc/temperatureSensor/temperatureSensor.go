@@ -7,7 +7,6 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"log/slog"
-	"time"
 )
 
 type Client struct {
@@ -18,9 +17,6 @@ type Client struct {
 type Config struct {
 	Address        string
 	MaxMessageSize int
-	RetryAttempts  int
-	MinRetryTime   time.Duration
-	MaxRetryTime   time.Duration
 }
 
 func New(d *Config) (*Client, error) {
