@@ -27,7 +27,7 @@ func main() {
 		return
 	}
 
-	application, err := app.New(ctx, conf, cred)
+	application, err := app.New(conf, cred)
 	if err != nil {
 		slog.Error("cannot create app", "error", err)
 		return

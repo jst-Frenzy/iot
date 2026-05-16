@@ -15,7 +15,7 @@ type App struct {
 	collector *usecase.Collector
 }
 
-func New(ctx context.Context, conf *configuration.Config, cred *credentials.Credentials) (*App, error) {
+func New(conf *configuration.Config, cred *credentials.Credentials) (*App, error) {
 	dataIntegratorSender, err := dataintegrator.New(&dataintegrator.Config{
 		Address:        cred.DataIntegrator.Address,
 		MaxMessageSize: cred.DataIntegrator.MaxMessageSize,
