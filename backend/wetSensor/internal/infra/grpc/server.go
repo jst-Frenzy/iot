@@ -3,7 +3,7 @@ package grpc
 import (
 	"context"
 	"errors"
-	"github.com/jst-Frenzy/iot/backend/temperatureSensor/internal/config/configuration"
+	"github.com/jst-Frenzy/iot/backend/wetSensor/internal/config/configuration"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	"log/slog"

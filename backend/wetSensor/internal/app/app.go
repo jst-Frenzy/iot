@@ -3,10 +3,10 @@ package app
 import (
 	"context"
 	"fmt"
-	"github.com/jst-Frenzy/iot/backend/temperatureSensor/internal/config/configuration"
-	"github.com/jst-Frenzy/iot/backend/temperatureSensor/internal/infra/grpc"
-	"github.com/jst-Frenzy/iot/backend/temperatureSensor/internal/infra/grpc/services"
-	"github.com/jst-Frenzy/iot/backend/temperatureSensor/internal/usecase"
+	"github.com/jst-Frenzy/iot/backend/wetSensor/internal/config/configuration"
+	"github.com/jst-Frenzy/iot/backend/wetSensor/internal/infra/grpc"
+	"github.com/jst-Frenzy/iot/backend/wetSensor/internal/infra/grpc/services"
+	"github.com/jst-Frenzy/iot/backend/wetSensor/internal/usecase"
 	"log/slog"
 	"sync"
 )
@@ -16,7 +16,7 @@ type App struct {
 }
 
 func New(ctx context.Context, conf *configuration.Config) (*App, error) {
-	usecaseTS := usecase.NewTemperatureSensor(&usecase.TemperatureSensorDeps{
+	usecaseWS := usecase.NewTemperatureSensor(&usecase.WetSensorDeps{
 		DelayDataGen: conf.DelayDataGen,
 	})
 
@@ -24,8 +24,8 @@ func New(ctx context.Context, conf *configuration.Config) (*App, error) {
 		Conf:   conf.GRPCServer,
 		Logger: slog.With("server", "grpcServer"),
 		Services: []grpc.Service{
-			services.New(&services.TemperatureSensorDeps{
-				Device: usecaseTS,
+			services.New(&services.WetSensorDeps{
+				Device: usecaseWS,
 			}),
 		},
 	})

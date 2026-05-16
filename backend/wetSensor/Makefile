@@ -15,8 +15,8 @@ proto-gen:
 		--experimental_allow_proto3_optional \
 		--proto_path=. \
 		--go_out=./api/grpc/gen \
-		--go_opt=module=github.com/jst-Frenzy/iot/backend/temperatureSensor/api/grpc/gen \
+		--go_opt=module=github.com/jst-Frenzy/iot/backend/wetSensor/api/grpc/gen \
 		--go-grpc_out=./api/grpc/gen \
-		--go-grpc_opt=module=github.com/jst-Frenzy/iot/backend/temperatureSensor/api/grpc/gen \
-		./api/grpc/proto/temperatureSensor.proto
+		--go-grpc_opt=module=github.com/jst-Frenzy/iot/backend/wetSensor/api/grpc/gen \
+		./api/grpc/proto/wetSensor.proto
 	@echo "[OK] Protobuf code generated successfully!"

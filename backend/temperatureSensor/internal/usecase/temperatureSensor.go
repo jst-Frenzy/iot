@@ -1,8 +1,7 @@
 package usecase
 
 import (
-	"context"
-	"github.com/jst-Frenzy/iot/backend/temperatureSensor/internal/entity"
+	"math/rand"
 	"time"
 )
 
@@ -11,27 +10,16 @@ type TemperatureSensorDeps struct {
 }
 
 type TemperatureSensor struct {
-	device       entity.TemperatureSensor
 	delayDataGen time.Duration
 }
 
 func NewTemperatureSensor(d *TemperatureSensorDeps) *TemperatureSensor {
 	return &TemperatureSensor{
-		device:       entity.TemperatureSensor{},
 		delayDataGen: d.DelayDataGen,
 	}
 }
 
-func (t *TemperatureSensor) Start(ctx context.Context) {
-	go func() {
-		for {
-			select {
-			case <-ctx.Done():
-				return
-			default:
-				time.Sleep(t.delayDataGen)
-				t.device.GenerateTemperature()
-			}
-		}
-	}()
+func (t *TemperatureSensor) GenerateData() int32 {
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+	return int32(r.Intn(26) + 10)
 }

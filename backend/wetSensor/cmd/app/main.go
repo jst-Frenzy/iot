@@ -2,8 +2,8 @@ package main
 
 import (
 	"context"
-	"github.com/jst-Frenzy/iot/backend/temperatureSensor/internal/app"
-	"github.com/jst-Frenzy/iot/backend/temperatureSensor/internal/config/configuration"
+	"github.com/jst-Frenzy/iot/backend/wetSensor/internal/app"
+	"github.com/jst-Frenzy/iot/backend/wetSensor/internal/config/configuration"
 	"log/slog"
 	"os/signal"
 	"syscall"

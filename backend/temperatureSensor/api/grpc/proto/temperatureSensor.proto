@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package trading;
+
+option go_package = "github.com/jst-Frenzy/iot/backend/temperatureSensor/api/grpc/gen;temperatureSensor";
+
+service TemperatureSensorService {
+  rpc GetData(GetDataRequest) returns (GetDataResponse);
+}
+
+message GetDataRequest{}
+
+message GetDataResponse{
+  int32 data = 1;
+}

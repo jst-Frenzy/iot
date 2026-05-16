@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package trading;
+
+option go_package = "github.com/jst-Frenzy/iot/backend/wetSensor/api/grpc/gen;wetSensor";
+
+service WetSensorService {
+  rpc GetData(GetDataRequest) returns (GetDataResponse);
+}
+
+message GetDataRequest{}
+
+message GetDataResponse{
+  int32 data = 1;
+}
