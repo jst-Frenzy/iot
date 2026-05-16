@@ -1,6 +1,7 @@
 package usecase
 
 import (
+	"context"
 	"github.com/jst-Frenzy/iot/backend/temperatureSensor/internal/entity"
 	"time"
 )
@@ -21,10 +22,16 @@ func NewTemperatureSensor(d *TemperatureSensorDeps) *TemperatureSensor {
 	}
 }
 
-func (t *TemperatureSensor) Start() {
+func (t *TemperatureSensor) Start(ctx context.Context) {
 	go func() {
-		time.Sleep(t.delayDataGen)
-		t.device.GenerateTemperature()
-
+		for {
+			select {
+			case <-ctx.Done():
+				return
+			default:
+				time.Sleep(t.delayDataGen)
+				t.device.GenerateTemperature()
+			}
+		}
 	}()
 }
