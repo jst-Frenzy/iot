@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package trading;
+
+option go_package = "github.com/jst-Frenzy/iot/backend/dataController/api/grpc/gen;dataController";
+
+service DeviceService {
+  rpc GetData(GetDataRequest) returns (GetDataResponse);
+  rpc StartDevice(StartDeviceRequest) returns (StartDeviceResponse);
+}
+
+message GetDataRequest{
+}
+
+message GetDataResponse{
+  string data = 1;
+}
+
+message StartDeviceRequest{
+
+}
+
+message StartDeviceResponse{
+
+}
