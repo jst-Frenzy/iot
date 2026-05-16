@@ -5,18 +5,11 @@ import (
 	"time"
 )
 
-type TemperatureSensorDeps struct {
-	DelayDataGen time.Duration
-}
-
 type TemperatureSensor struct {
-	delayDataGen time.Duration
 }
 
-func NewTemperatureSensor(d *TemperatureSensorDeps) *TemperatureSensor {
-	return &TemperatureSensor{
-		delayDataGen: d.DelayDataGen,
-	}
+func NewTemperatureSensor() *TemperatureSensor {
+	return &TemperatureSensor{}
 }
 
 func (t *TemperatureSensor) GenerateData() int32 {

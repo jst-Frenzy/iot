@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.6.1
 // - protoc             v5.29.3
-// source: api/grpc/proto/wetSensor.proto
+// source: api/grpc/proto/temperatureSensor.proto
 
 package temperatureSensor
 
@@ -118,5 +118,5 @@ var TemperatureSensorService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "api/grpc/proto/wetSensor.proto",
+	Metadata: "api/grpc/proto/temperatureSensor.proto",
 }

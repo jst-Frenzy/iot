@@ -19,14 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DataIntegratorService_TestCall_FullMethodName = "/trading.DataIntegratorService/testCall"
+	DataIntegratorService_AcceptData_FullMethodName = "/trading.DataIntegratorService/acceptData"
 )
 
 // DataIntegratorServiceClient is the client API for DataIntegratorService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DataIntegratorServiceClient interface {
-	TestCall(ctx context.Context, in *TestCallRequest, opts ...grpc.CallOption) (*TestCallResponse, error)
+	AcceptData(ctx context.Context, in *AcceptDataRequest, opts ...grpc.CallOption) (*AcceptDataResponse, error)
 }
 
 type dataIntegratorServiceClient struct {
@@ -37,10 +37,10 @@ func NewDataIntegratorServiceClient(cc grpc.ClientConnInterface) DataIntegratorS
 	return &dataIntegratorServiceClient{cc}
 }
 
-func (c *dataIntegratorServiceClient) TestCall(ctx context.Context, in *TestCallRequest, opts ...grpc.CallOption) (*TestCallResponse, error) {
+func (c *dataIntegratorServiceClient) AcceptData(ctx context.Context, in *AcceptDataRequest, opts ...grpc.CallOption) (*AcceptDataResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TestCallResponse)
-	err := c.cc.Invoke(ctx, DataIntegratorService_TestCall_FullMethodName, in, out, cOpts...)
+	out := new(AcceptDataResponse)
+	err := c.cc.Invoke(ctx, DataIntegratorService_AcceptData_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -51,7 +51,7 @@ func (c *dataIntegratorServiceClient) TestCall(ctx context.Context, in *TestCall
 // All implementations must embed UnimplementedDataIntegratorServiceServer
 // for forward compatibility.
 type DataIntegratorServiceServer interface {
-	TestCall(context.Context, *TestCallRequest) (*TestCallResponse, error)
+	AcceptData(context.Context, *AcceptDataRequest) (*AcceptDataResponse, error)
 	mustEmbedUnimplementedDataIntegratorServiceServer()
 }
 
@@ -62,8 +62,8 @@ type DataIntegratorServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedDataIntegratorServiceServer struct{}
 
-func (UnimplementedDataIntegratorServiceServer) TestCall(context.Context, *TestCallRequest) (*TestCallResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method TestCall not implemented")
+func (UnimplementedDataIntegratorServiceServer) AcceptData(context.Context, *AcceptDataRequest) (*AcceptDataResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method AcceptData not implemented")
 }
 func (UnimplementedDataIntegratorServiceServer) mustEmbedUnimplementedDataIntegratorServiceServer() {}
 func (UnimplementedDataIntegratorServiceServer) testEmbeddedByValue()                               {}
@@ -86,20 +86,20 @@ func RegisterDataIntegratorServiceServer(s grpc.ServiceRegistrar, srv DataIntegr
 	s.RegisterService(&DataIntegratorService_ServiceDesc, srv)
 }
 
-func _DataIntegratorService_TestCall_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TestCallRequest)
+func _DataIntegratorService_AcceptData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AcceptDataRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DataIntegratorServiceServer).TestCall(ctx, in)
+		return srv.(DataIntegratorServiceServer).AcceptData(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DataIntegratorService_TestCall_FullMethodName,
+		FullMethod: DataIntegratorService_AcceptData_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DataIntegratorServiceServer).TestCall(ctx, req.(*TestCallRequest))
+		return srv.(DataIntegratorServiceServer).AcceptData(ctx, req.(*AcceptDataRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -112,8 +112,8 @@ var DataIntegratorService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*DataIntegratorServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "testCall",
-			Handler:    _DataIntegratorService_TestCall_Handler,
+			MethodName: "acceptData",
+			Handler:    _DataIntegratorService_AcceptData_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -1,6 +1,7 @@
 package temperatureSensor
 
 import (
+	"context"
 	"fmt"
 	tsc "github.com/jst-Frenzy/iot/backend/temperatureSensor/api/grpc/gen"
 	"google.golang.org/grpc"
@@ -10,36 +11,37 @@ import (
 )
 
 type Client struct {
-	service tsc.DeviceServiceClient
+	service tsc.TemperatureSensorServiceClient
 	logger  *slog.Logger
 }
 
 type Config struct {
-	Address        string        `validate:"required"`
-	MaxMessageSize int           `validate:"required"`
-	RetryAttempts  int           `validate:"required"`
-	MinRetryTime   time.Duration `validate:"required"`
-	MaxRetryTime   time.Duration `validate:"required"`
+	Address        string
+	MaxMessageSize int
+	RetryAttempts  int
+	MinRetryTime   time.Duration
+	MaxRetryTime   time.Duration
 }
 
 func New(d *Config) (*Client, error) {
-	if err := validate.Struct(d); err != nil {
-		return nil, err
-	}
-
 	conn, err := grpc.NewClient(d.Address,
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
 		grpc.WithDefaultCallOptions(grpc.MaxCallRecvMsgSize(d.MaxMessageSize)),
-		grpc.WithUnaryInterceptor(
-			interceptors.UnaryRetry(d.RetryAttempts, d.MinRetryTime, d.MaxRetryTime),
-		),
 	)
 	if err != nil {
 		return nil, fmt.Errorf("failed to connect to gRPC server: %w", err)
 	}
 
 	return &Client{
-		service: pbs.NewAuctionServiceClient(conn),
-		logger:  slog.With(sl.Component("integrations.grpc.atracs")),
+		service: tsc.NewTemperatureSensorServiceClient(conn),
+		logger:  slog.With(slog.With("service", "integrations.grpc.temperatureService")),
 	}, nil
+}
+
+func (c *Client) GetTemperature(ctx context.Context) (int32, error) {
+	resp, err := c.service.GetData(ctx, &tsc.GetDataRequest{})
+	if err != nil {
+		return 0, fmt.Errorf("cant get temperature: %w", err)
+	}
+	return resp.Data, nil
 }

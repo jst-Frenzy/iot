@@ -16,9 +16,7 @@ type App struct {
 }
 
 func New(ctx context.Context, conf *configuration.Config) (*App, error) {
-	usecaseWS := usecase.NewTemperatureSensor(&usecase.WetSensorDeps{
-		DelayDataGen: conf.DelayDataGen,
-	})
+	usecaseWS := usecase.NewTemperatureSensor()
 
 	grpcServer, err := grpc.New(&grpc.Deps{
 		Conf:   conf.GRPCServer,

@@ -5,18 +5,10 @@ import (
 	"time"
 )
 
-type WetSensorDeps struct {
-	DelayDataGen time.Duration
-}
+type WetSensor struct{}
 
-type WetSensor struct {
-	delayDataGen time.Duration
-}
-
-func NewTemperatureSensor(d *WetSensorDeps) *WetSensor {
-	return &WetSensor{
-		delayDataGen: d.DelayDataGen,
-	}
+func NewTemperatureSensor() *WetSensor {
+	return &WetSensor{}
 }
 
 func (t *WetSensor) GenerateData() int32 {

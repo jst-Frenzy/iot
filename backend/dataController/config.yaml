@@ -1,5 +1,7 @@
+DelayDataGen: 3s
+
 GRPCServer:
-  Address: "127.0.0.1:8091"
+  Address: "127.0.0.1:8095"
   MaxReceiveMsgSize: 52428800
   MaxSendMsgSize: 52428800
 

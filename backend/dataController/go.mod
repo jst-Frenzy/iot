@@ -8,7 +8,8 @@ require (
 )
 
 require (
-	github.com/jst-Frenzy/iot/backend/temperatureSensor v0.0.0-20260516115221-67743bc77256 // indirect
+	github.com/jst-Frenzy/iot/backend/temperatureSensor v0.0.0-20260516143308-4223fd934161 // indirect
+	github.com/jst-Frenzy/iot/backend/wetSensor v0.0.0-20260516143308-4223fd934161 // indirect
 	golang.org/x/net v0.51.0 // indirect
 	golang.org/x/sys v0.42.0 // indirect
 	golang.org/x/text v0.35.0 // indirect

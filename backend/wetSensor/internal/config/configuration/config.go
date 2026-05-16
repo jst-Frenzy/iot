@@ -3,16 +3,13 @@ package configuration
 import (
 	"fmt"
 	"github.com/go-playground/validator/v10"
-	"time"
-
 	"github.com/spf13/viper"
 )
 
 const _defaultConfigPath = "config.yaml"
 
 type Config struct {
-	GRPCServer   *GRPCServer   `mapstructure:"GRPCServer" validate:"required"`
-	DelayDataGen time.Duration `mapstructure:"DelayDataGen" validate:"required"`
+	GRPCServer *GRPCServer `mapstructure:"GRPCServer" validate:"required"`
 }
 
 type GRPCServer struct {

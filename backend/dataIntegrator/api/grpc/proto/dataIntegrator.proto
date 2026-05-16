@@ -5,13 +5,12 @@ package trading;
 option go_package = "github.com/jst-Frenzy/iot/backend/dataIntegrator/api/grpc/gen;dataIntegrator";
 
 service DataIntegratorService {
-  rpc testCall(testCallRequest) returns (testCallResponse);
+  rpc acceptData(acceptDataRequest) returns (acceptDataResponse);
 }
 
-message testCallRequest{
-  string data = 1;
+message acceptDataRequest{
+  int32 wet = 1;
+  int32 temperature = 2;
 }
 
-message testCallResponse{
-  string data = 1;
-}
+message acceptDataResponse{}

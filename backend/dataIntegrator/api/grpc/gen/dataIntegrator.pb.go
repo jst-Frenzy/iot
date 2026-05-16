@@ -21,27 +21,28 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type TestCallRequest struct {
+type AcceptDataRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Data          string                 `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
+	Wet           int32                  `protobuf:"varint,1,opt,name=wet,proto3" json:"wet,omitempty"`
+	Temperature   int32                  `protobuf:"varint,2,opt,name=temperature,proto3" json:"temperature,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *TestCallRequest) Reset() {
-	*x = TestCallRequest{}
+func (x *AcceptDataRequest) Reset() {
+	*x = AcceptDataRequest{}
 	mi := &file_api_grpc_proto_dataIntegrator_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TestCallRequest) String() string {
+func (x *AcceptDataRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TestCallRequest) ProtoMessage() {}
+func (*AcceptDataRequest) ProtoMessage() {}
 
-func (x *TestCallRequest) ProtoReflect() protoreflect.Message {
+func (x *AcceptDataRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_api_grpc_proto_dataIntegrator_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -53,39 +54,45 @@ func (x *TestCallRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TestCallRequest.ProtoReflect.Descriptor instead.
-func (*TestCallRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use AcceptDataRequest.ProtoReflect.Descriptor instead.
+func (*AcceptDataRequest) Descriptor() ([]byte, []int) {
 	return file_api_grpc_proto_dataIntegrator_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *TestCallRequest) GetData() string {
+func (x *AcceptDataRequest) GetWet() int32 {
 	if x != nil {
-		return x.Data
+		return x.Wet
 	}
-	return ""
+	return 0
 }
 
-type TestCallResponse struct {
+func (x *AcceptDataRequest) GetTemperature() int32 {
+	if x != nil {
+		return x.Temperature
+	}
+	return 0
+}
+
+type AcceptDataResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Data          string                 `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *TestCallResponse) Reset() {
-	*x = TestCallResponse{}
+func (x *AcceptDataResponse) Reset() {
+	*x = AcceptDataResponse{}
 	mi := &file_api_grpc_proto_dataIntegrator_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TestCallResponse) String() string {
+func (x *AcceptDataResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TestCallResponse) ProtoMessage() {}
+func (*AcceptDataResponse) ProtoMessage() {}
 
-func (x *TestCallResponse) ProtoReflect() protoreflect.Message {
+func (x *AcceptDataResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_api_grpc_proto_dataIntegrator_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -97,29 +104,23 @@ func (x *TestCallResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TestCallResponse.ProtoReflect.Descriptor instead.
-func (*TestCallResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use AcceptDataResponse.ProtoReflect.Descriptor instead.
+func (*AcceptDataResponse) Descriptor() ([]byte, []int) {
 	return file_api_grpc_proto_dataIntegrator_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *TestCallResponse) GetData() string {
-	if x != nil {
-		return x.Data
-	}
-	return ""
 }
 
 var File_api_grpc_proto_dataIntegrator_proto protoreflect.FileDescriptor
 
 const file_api_grpc_proto_dataIntegrator_proto_rawDesc = "" +
 	"\n" +
-	"#api/grpc/proto/dataIntegrator.proto\x12\atrading\"%\n" +
-	"\x0ftestCallRequest\x12\x12\n" +
-	"\x04data\x18\x01 \x01(\tR\x04data\"&\n" +
-	"\x10testCallResponse\x12\x12\n" +
-	"\x04data\x18\x01 \x01(\tR\x04data2X\n" +
-	"\x15DataIntegratorService\x12?\n" +
-	"\btestCall\x12\x18.trading.testCallRequest\x1a\x19.trading.testCallResponseBNZLgithub.com/jst-Frenzy/iot/backend/dataIntegrator/api/grpc/gen;dataIntegratorb\x06proto3"
+	"#api/grpc/proto/dataIntegrator.proto\x12\atrading\"G\n" +
+	"\x11acceptDataRequest\x12\x10\n" +
+	"\x03wet\x18\x01 \x01(\x05R\x03wet\x12 \n" +
+	"\vtemperature\x18\x02 \x01(\x05R\vtemperature\"\x14\n" +
+	"\x12acceptDataResponse2^\n" +
+	"\x15DataIntegratorService\x12E\n" +
+	"\n" +
+	"acceptData\x12\x1a.trading.acceptDataRequest\x1a\x1b.trading.acceptDataResponseBNZLgithub.com/jst-Frenzy/iot/backend/dataIntegrator/api/grpc/gen;dataIntegratorb\x06proto3"
 
 var (
 	file_api_grpc_proto_dataIntegrator_proto_rawDescOnce sync.Once
@@ -135,12 +136,12 @@ func file_api_grpc_proto_dataIntegrator_proto_rawDescGZIP() []byte {
 
 var file_api_grpc_proto_dataIntegrator_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_api_grpc_proto_dataIntegrator_proto_goTypes = []any{
-	(*TestCallRequest)(nil),  // 0: trading.testCallRequest
-	(*TestCallResponse)(nil), // 1: trading.testCallResponse
+	(*AcceptDataRequest)(nil),  // 0: trading.acceptDataRequest
+	(*AcceptDataResponse)(nil), // 1: trading.acceptDataResponse
 }
 var file_api_grpc_proto_dataIntegrator_proto_depIdxs = []int32{
-	0, // 0: trading.DataIntegratorService.testCall:input_type -> trading.testCallRequest
-	1, // 1: trading.DataIntegratorService.testCall:output_type -> trading.testCallResponse
+	0, // 0: trading.DataIntegratorService.acceptData:input_type -> trading.acceptDataRequest
+	1, // 1: trading.DataIntegratorService.acceptData:output_type -> trading.acceptDataResponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
