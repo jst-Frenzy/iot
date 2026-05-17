@@ -41,3 +41,8 @@ func (c *Client) GetTemperature(ctx context.Context) (int32, error) {
 	}
 	return resp.Data, nil
 }
+
+func (c *Client) ChangeMode(ctx context.Context) error {
+	_, err := c.service.ChangeMode(ctx, &tsc.ChangeModRequest{})
+	return err
+}

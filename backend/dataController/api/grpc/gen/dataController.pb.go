@@ -21,158 +21,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type GetDataRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetDataRequest) Reset() {
-	*x = GetDataRequest{}
-	mi := &file_api_grpc_proto_dataController_proto_msgTypes[0]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetDataRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetDataRequest) ProtoMessage() {}
-
-func (x *GetDataRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_grpc_proto_dataController_proto_msgTypes[0]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetDataRequest.ProtoReflect.Descriptor instead.
-func (*GetDataRequest) Descriptor() ([]byte, []int) {
-	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{0}
-}
-
-type GetDataResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Data          string                 `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetDataResponse) Reset() {
-	*x = GetDataResponse{}
-	mi := &file_api_grpc_proto_dataController_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetDataResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetDataResponse) ProtoMessage() {}
-
-func (x *GetDataResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_grpc_proto_dataController_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetDataResponse.ProtoReflect.Descriptor instead.
-func (*GetDataResponse) Descriptor() ([]byte, []int) {
-	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *GetDataResponse) GetData() string {
-	if x != nil {
-		return x.Data
-	}
-	return ""
-}
-
-type StartDeviceRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *StartDeviceRequest) Reset() {
-	*x = StartDeviceRequest{}
-	mi := &file_api_grpc_proto_dataController_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *StartDeviceRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StartDeviceRequest) ProtoMessage() {}
-
-func (x *StartDeviceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_grpc_proto_dataController_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StartDeviceRequest.ProtoReflect.Descriptor instead.
-func (*StartDeviceRequest) Descriptor() ([]byte, []int) {
-	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{2}
-}
-
-type StartDeviceResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *StartDeviceResponse) Reset() {
-	*x = StartDeviceResponse{}
-	mi := &file_api_grpc_proto_dataController_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *StartDeviceResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StartDeviceResponse) ProtoMessage() {}
-
-func (x *StartDeviceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_grpc_proto_dataController_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StartDeviceResponse.ProtoReflect.Descriptor instead.
-func (*StartDeviceResponse) Descriptor() ([]byte, []int) {
-	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{3}
-}
-
 type OnPumpRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -181,7 +29,7 @@ type OnPumpRequest struct {
 
 func (x *OnPumpRequest) Reset() {
 	*x = OnPumpRequest{}
-	mi := &file_api_grpc_proto_dataController_proto_msgTypes[4]
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -193,7 +41,7 @@ func (x *OnPumpRequest) String() string {
 func (*OnPumpRequest) ProtoMessage() {}
 
 func (x *OnPumpRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_grpc_proto_dataController_proto_msgTypes[4]
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -206,7 +54,7 @@ func (x *OnPumpRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OnPumpRequest.ProtoReflect.Descriptor instead.
 func (*OnPumpRequest) Descriptor() ([]byte, []int) {
-	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{4}
+	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{0}
 }
 
 type OnPumpResponse struct {
@@ -217,7 +65,7 @@ type OnPumpResponse struct {
 
 func (x *OnPumpResponse) Reset() {
 	*x = OnPumpResponse{}
-	mi := &file_api_grpc_proto_dataController_proto_msgTypes[5]
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -229,7 +77,7 @@ func (x *OnPumpResponse) String() string {
 func (*OnPumpResponse) ProtoMessage() {}
 
 func (x *OnPumpResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_grpc_proto_dataController_proto_msgTypes[5]
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -242,7 +90,7 @@ func (x *OnPumpResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OnPumpResponse.ProtoReflect.Descriptor instead.
 func (*OnPumpResponse) Descriptor() ([]byte, []int) {
-	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{5}
+	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{1}
 }
 
 type OffPumpRequest struct {
@@ -253,7 +101,7 @@ type OffPumpRequest struct {
 
 func (x *OffPumpRequest) Reset() {
 	*x = OffPumpRequest{}
-	mi := &file_api_grpc_proto_dataController_proto_msgTypes[6]
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -265,7 +113,7 @@ func (x *OffPumpRequest) String() string {
 func (*OffPumpRequest) ProtoMessage() {}
 
 func (x *OffPumpRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_grpc_proto_dataController_proto_msgTypes[6]
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -278,7 +126,7 @@ func (x *OffPumpRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OffPumpRequest.ProtoReflect.Descriptor instead.
 func (*OffPumpRequest) Descriptor() ([]byte, []int) {
-	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{6}
+	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{2}
 }
 
 type OffPumpResponse struct {
@@ -289,7 +137,7 @@ type OffPumpResponse struct {
 
 func (x *OffPumpResponse) Reset() {
 	*x = OffPumpResponse{}
-	mi := &file_api_grpc_proto_dataController_proto_msgTypes[7]
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -301,7 +149,7 @@ func (x *OffPumpResponse) String() string {
 func (*OffPumpResponse) ProtoMessage() {}
 
 func (x *OffPumpResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_grpc_proto_dataController_proto_msgTypes[7]
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -314,7 +162,7 @@ func (x *OffPumpResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OffPumpResponse.ProtoReflect.Descriptor instead.
 func (*OffPumpResponse) Descriptor() ([]byte, []int) {
-	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{7}
+	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{3}
 }
 
 type OnFanRequest struct {
@@ -325,7 +173,7 @@ type OnFanRequest struct {
 
 func (x *OnFanRequest) Reset() {
 	*x = OnFanRequest{}
-	mi := &file_api_grpc_proto_dataController_proto_msgTypes[8]
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -337,7 +185,7 @@ func (x *OnFanRequest) String() string {
 func (*OnFanRequest) ProtoMessage() {}
 
 func (x *OnFanRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_grpc_proto_dataController_proto_msgTypes[8]
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -350,7 +198,7 @@ func (x *OnFanRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OnFanRequest.ProtoReflect.Descriptor instead.
 func (*OnFanRequest) Descriptor() ([]byte, []int) {
-	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{8}
+	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{4}
 }
 
 type OnFanResponse struct {
@@ -361,7 +209,7 @@ type OnFanResponse struct {
 
 func (x *OnFanResponse) Reset() {
 	*x = OnFanResponse{}
-	mi := &file_api_grpc_proto_dataController_proto_msgTypes[9]
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -373,7 +221,7 @@ func (x *OnFanResponse) String() string {
 func (*OnFanResponse) ProtoMessage() {}
 
 func (x *OnFanResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_grpc_proto_dataController_proto_msgTypes[9]
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -386,7 +234,7 @@ func (x *OnFanResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OnFanResponse.ProtoReflect.Descriptor instead.
 func (*OnFanResponse) Descriptor() ([]byte, []int) {
-	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{9}
+	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{5}
 }
 
 type OffFanRequest struct {
@@ -397,7 +245,7 @@ type OffFanRequest struct {
 
 func (x *OffFanRequest) Reset() {
 	*x = OffFanRequest{}
-	mi := &file_api_grpc_proto_dataController_proto_msgTypes[10]
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -409,7 +257,7 @@ func (x *OffFanRequest) String() string {
 func (*OffFanRequest) ProtoMessage() {}
 
 func (x *OffFanRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_grpc_proto_dataController_proto_msgTypes[10]
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -422,7 +270,7 @@ func (x *OffFanRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OffFanRequest.ProtoReflect.Descriptor instead.
 func (*OffFanRequest) Descriptor() ([]byte, []int) {
-	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{10}
+	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{6}
 }
 
 type OffFanResponse struct {
@@ -433,7 +281,7 @@ type OffFanResponse struct {
 
 func (x *OffFanResponse) Reset() {
 	*x = OffFanResponse{}
-	mi := &file_api_grpc_proto_dataController_proto_msgTypes[11]
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -445,7 +293,7 @@ func (x *OffFanResponse) String() string {
 func (*OffFanResponse) ProtoMessage() {}
 
 func (x *OffFanResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_grpc_proto_dataController_proto_msgTypes[11]
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -458,19 +306,14 @@ func (x *OffFanResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OffFanResponse.ProtoReflect.Descriptor instead.
 func (*OffFanResponse) Descriptor() ([]byte, []int) {
-	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{11}
+	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{7}
 }
 
 var File_api_grpc_proto_dataController_proto protoreflect.FileDescriptor
 
 const file_api_grpc_proto_dataController_proto_rawDesc = "" +
 	"\n" +
-	"#api/grpc/proto/dataController.proto\x12\atrading\"\x10\n" +
-	"\x0eGetDataRequest\"%\n" +
-	"\x0fGetDataResponse\x12\x12\n" +
-	"\x04data\x18\x01 \x01(\tR\x04data\"\x14\n" +
-	"\x12StartDeviceRequest\"\x15\n" +
-	"\x13StartDeviceResponse\"\x0f\n" +
+	"#api/grpc/proto/dataController.proto\x12\atrading\"\x0f\n" +
 	"\rOnPumpRequest\"\x10\n" +
 	"\x0eOnPumpResponse\"\x10\n" +
 	"\x0eOffPumpRequest\"\x11\n" +
@@ -478,10 +321,8 @@ const file_api_grpc_proto_dataController_proto_rawDesc = "" +
 	"\fOnFanRequest\"\x0f\n" +
 	"\rOnFanResponse\"\x0f\n" +
 	"\rOffFanRequest\"\x10\n" +
-	"\x0eOffFanResponse2\x83\x03\n" +
-	"\rDeviceService\x12<\n" +
-	"\aGetData\x12\x17.trading.GetDataRequest\x1a\x18.trading.GetDataResponse\x12H\n" +
-	"\vStartDevice\x12\x1b.trading.StartDeviceRequest\x1a\x1c.trading.StartDeviceResponse\x129\n" +
+	"\x0eOffFanResponse2\xfb\x01\n" +
+	"\rDeviceService\x129\n" +
 	"\x06OnPump\x12\x16.trading.OnPumpRequest\x1a\x17.trading.OnPumpResponse\x12<\n" +
 	"\aOffPump\x12\x17.trading.OffPumpRequest\x1a\x18.trading.OffPumpResponse\x126\n" +
 	"\x05OnFan\x12\x15.trading.OnFanRequest\x1a\x16.trading.OnFanResponse\x129\n" +
@@ -499,39 +340,31 @@ func file_api_grpc_proto_dataController_proto_rawDescGZIP() []byte {
 	return file_api_grpc_proto_dataController_proto_rawDescData
 }
 
-var file_api_grpc_proto_dataController_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_api_grpc_proto_dataController_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_api_grpc_proto_dataController_proto_goTypes = []any{
-	(*GetDataRequest)(nil),      // 0: trading.GetDataRequest
-	(*GetDataResponse)(nil),     // 1: trading.GetDataResponse
-	(*StartDeviceRequest)(nil),  // 2: trading.StartDeviceRequest
-	(*StartDeviceResponse)(nil), // 3: trading.StartDeviceResponse
-	(*OnPumpRequest)(nil),       // 4: trading.OnPumpRequest
-	(*OnPumpResponse)(nil),      // 5: trading.OnPumpResponse
-	(*OffPumpRequest)(nil),      // 6: trading.OffPumpRequest
-	(*OffPumpResponse)(nil),     // 7: trading.OffPumpResponse
-	(*OnFanRequest)(nil),        // 8: trading.OnFanRequest
-	(*OnFanResponse)(nil),       // 9: trading.OnFanResponse
-	(*OffFanRequest)(nil),       // 10: trading.OffFanRequest
-	(*OffFanResponse)(nil),      // 11: trading.OffFanResponse
+	(*OnPumpRequest)(nil),   // 0: trading.OnPumpRequest
+	(*OnPumpResponse)(nil),  // 1: trading.OnPumpResponse
+	(*OffPumpRequest)(nil),  // 2: trading.OffPumpRequest
+	(*OffPumpResponse)(nil), // 3: trading.OffPumpResponse
+	(*OnFanRequest)(nil),    // 4: trading.OnFanRequest
+	(*OnFanResponse)(nil),   // 5: trading.OnFanResponse
+	(*OffFanRequest)(nil),   // 6: trading.OffFanRequest
+	(*OffFanResponse)(nil),  // 7: trading.OffFanResponse
 }
 var file_api_grpc_proto_dataController_proto_depIdxs = []int32{
-	0,  // 0: trading.DeviceService.GetData:input_type -> trading.GetDataRequest
-	2,  // 1: trading.DeviceService.StartDevice:input_type -> trading.StartDeviceRequest
-	4,  // 2: trading.DeviceService.OnPump:input_type -> trading.OnPumpRequest
-	6,  // 3: trading.DeviceService.OffPump:input_type -> trading.OffPumpRequest
-	8,  // 4: trading.DeviceService.OnFan:input_type -> trading.OnFanRequest
-	10, // 5: trading.DeviceService.OffFan:input_type -> trading.OffFanRequest
-	1,  // 6: trading.DeviceService.GetData:output_type -> trading.GetDataResponse
-	3,  // 7: trading.DeviceService.StartDevice:output_type -> trading.StartDeviceResponse
-	5,  // 8: trading.DeviceService.OnPump:output_type -> trading.OnPumpResponse
-	7,  // 9: trading.DeviceService.OffPump:output_type -> trading.OffPumpResponse
-	9,  // 10: trading.DeviceService.OnFan:output_type -> trading.OnFanResponse
-	11, // 11: trading.DeviceService.OffFan:output_type -> trading.OffFanResponse
-	6,  // [6:12] is the sub-list for method output_type
-	0,  // [0:6] is the sub-list for method input_type
-	0,  // [0:0] is the sub-list for extension type_name
-	0,  // [0:0] is the sub-list for extension extendee
-	0,  // [0:0] is the sub-list for field type_name
+	0, // 0: trading.DeviceService.OnPump:input_type -> trading.OnPumpRequest
+	2, // 1: trading.DeviceService.OffPump:input_type -> trading.OffPumpRequest
+	4, // 2: trading.DeviceService.OnFan:input_type -> trading.OnFanRequest
+	6, // 3: trading.DeviceService.OffFan:input_type -> trading.OffFanRequest
+	1, // 4: trading.DeviceService.OnPump:output_type -> trading.OnPumpResponse
+	3, // 5: trading.DeviceService.OffPump:output_type -> trading.OffPumpResponse
+	5, // 6: trading.DeviceService.OnFan:output_type -> trading.OnFanResponse
+	7, // 7: trading.DeviceService.OffFan:output_type -> trading.OffFanResponse
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
+	0, // [0:0] is the sub-list for extension type_name
+	0, // [0:0] is the sub-list for extension extendee
+	0, // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_api_grpc_proto_dataController_proto_init() }
@@ -545,7 +378,7 @@ func file_api_grpc_proto_dataController_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_grpc_proto_dataController_proto_rawDesc), len(file_api_grpc_proto_dataController_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

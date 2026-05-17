@@ -41,3 +41,8 @@ func (c *Client) GetWet(ctx context.Context) (int32, error) {
 	}
 	return resp.Data, nil
 }
+
+func (c *Client) ChangeMode(ctx context.Context) error {
+	_, err := c.service.ChangeMode(ctx, &wsc.ChangeModRequest{})
+	return err
+}

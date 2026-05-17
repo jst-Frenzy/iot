@@ -33,7 +33,11 @@ func main() {
 		return
 	}
 
-	application.Start(ctx)
+	err = application.Start(ctx)
+	if err != nil {
+		slog.Error("cannot create app", "error", err)
+		return
+	}
 
 	slog.Info("started")
 	<-ctx.Done()

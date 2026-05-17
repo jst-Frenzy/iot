@@ -1,15 +1,16 @@
 package pump
 
 import (
+	"context"
 	"fmt"
-	fc "github.com/jst-Frenzy/iot/backend/fan/api/grpc/gen"
 	pc "github.com/jst-Frenzy/iot/backend/pump/api/grpc/gen"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
+	"log/slog"
 )
 
 type Client struct {
-	service pc.
+	service pc.PumpServiceClient
 	logger  *slog.Logger
 }
 
@@ -28,17 +29,17 @@ func New(d *Config) (*Client, error) {
 	}
 
 	return &Client{
-		service: fc.NewFanServiceClient(conn),
+		service: pc.NewPumpServiceClient(conn),
 		logger:  slog.With(slog.With("service", "integrations.grpc.temperatureService")),
 	}, nil
 }
 
 func (c *Client) On(ctx context.Context) error {
-	_, err := c.service.On(ctx, &fc.OnRequest{})
+	_, err := c.service.On(ctx, &pc.OnRequest{})
 	return err
 }
 
 func (c *Client) Off(ctx context.Context) error {
-	_, err := c.service.Off(ctx, &fc.OffRequest{})
+	_, err := c.service.Off(ctx, &pc.OffRequest{})
 	return err
 }

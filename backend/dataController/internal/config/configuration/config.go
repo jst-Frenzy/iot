@@ -11,7 +11,14 @@ import (
 const _defaultConfigPath = "config.yaml"
 
 type Config struct {
+	GRPCServer   *GRPCServer   `mapstructure:"GRPCServer" validate:"required"`
 	DelayDataGen time.Duration `mapstructure:"DelayDataGen" validate:"required"`
+}
+
+type GRPCServer struct {
+	Address           string `mapstructure:"Address"           validate:"required"`
+	MaxReceiveMsgSize int    `mapstructure:"MaxReceiveMsgSize" validate:"gte=0"`
+	MaxSendMsgSize    int    `mapstructure:"MaxSendMsgSize"    validate:"gte=0"`
 }
 
 func New() (*Config, error) {

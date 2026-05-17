@@ -19,20 +19,16 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DeviceService_GetData_FullMethodName     = "/trading.DeviceService/GetData"
-	DeviceService_StartDevice_FullMethodName = "/trading.DeviceService/StartDevice"
-	DeviceService_OnPump_FullMethodName      = "/trading.DeviceService/OnPump"
-	DeviceService_OffPump_FullMethodName     = "/trading.DeviceService/OffPump"
-	DeviceService_OnFan_FullMethodName       = "/trading.DeviceService/OnFan"
-	DeviceService_OffFan_FullMethodName      = "/trading.DeviceService/OffFan"
+	DeviceService_OnPump_FullMethodName  = "/trading.DeviceService/OnPump"
+	DeviceService_OffPump_FullMethodName = "/trading.DeviceService/OffPump"
+	DeviceService_OnFan_FullMethodName   = "/trading.DeviceService/OnFan"
+	DeviceService_OffFan_FullMethodName  = "/trading.DeviceService/OffFan"
 )
 
 // DeviceServiceClient is the client API for DeviceService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DeviceServiceClient interface {
-	GetData(ctx context.Context, in *GetDataRequest, opts ...grpc.CallOption) (*GetDataResponse, error)
-	StartDevice(ctx context.Context, in *StartDeviceRequest, opts ...grpc.CallOption) (*StartDeviceResponse, error)
 	OnPump(ctx context.Context, in *OnPumpRequest, opts ...grpc.CallOption) (*OnPumpResponse, error)
 	OffPump(ctx context.Context, in *OffPumpRequest, opts ...grpc.CallOption) (*OffPumpResponse, error)
 	OnFan(ctx context.Context, in *OnFanRequest, opts ...grpc.CallOption) (*OnFanResponse, error)
@@ -45,26 +41,6 @@ type deviceServiceClient struct {
 
 func NewDeviceServiceClient(cc grpc.ClientConnInterface) DeviceServiceClient {
 	return &deviceServiceClient{cc}
-}
-
-func (c *deviceServiceClient) GetData(ctx context.Context, in *GetDataRequest, opts ...grpc.CallOption) (*GetDataResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetDataResponse)
-	err := c.cc.Invoke(ctx, DeviceService_GetData_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *deviceServiceClient) StartDevice(ctx context.Context, in *StartDeviceRequest, opts ...grpc.CallOption) (*StartDeviceResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(StartDeviceResponse)
-	err := c.cc.Invoke(ctx, DeviceService_StartDevice_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *deviceServiceClient) OnPump(ctx context.Context, in *OnPumpRequest, opts ...grpc.CallOption) (*OnPumpResponse, error) {
@@ -111,8 +87,6 @@ func (c *deviceServiceClient) OffFan(ctx context.Context, in *OffFanRequest, opt
 // All implementations must embed UnimplementedDeviceServiceServer
 // for forward compatibility.
 type DeviceServiceServer interface {
-	GetData(context.Context, *GetDataRequest) (*GetDataResponse, error)
-	StartDevice(context.Context, *StartDeviceRequest) (*StartDeviceResponse, error)
 	OnPump(context.Context, *OnPumpRequest) (*OnPumpResponse, error)
 	OffPump(context.Context, *OffPumpRequest) (*OffPumpResponse, error)
 	OnFan(context.Context, *OnFanRequest) (*OnFanResponse, error)
@@ -127,12 +101,6 @@ type DeviceServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedDeviceServiceServer struct{}
 
-func (UnimplementedDeviceServiceServer) GetData(context.Context, *GetDataRequest) (*GetDataResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetData not implemented")
-}
-func (UnimplementedDeviceServiceServer) StartDevice(context.Context, *StartDeviceRequest) (*StartDeviceResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method StartDevice not implemented")
-}
 func (UnimplementedDeviceServiceServer) OnPump(context.Context, *OnPumpRequest) (*OnPumpResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method OnPump not implemented")
 }
@@ -164,42 +132,6 @@ func RegisterDeviceServiceServer(s grpc.ServiceRegistrar, srv DeviceServiceServe
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&DeviceService_ServiceDesc, srv)
-}
-
-func _DeviceService_GetData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetDataRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DeviceServiceServer).GetData(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DeviceService_GetData_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeviceServiceServer).GetData(ctx, req.(*GetDataRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _DeviceService_StartDevice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(StartDeviceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DeviceServiceServer).StartDevice(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DeviceService_StartDevice_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DeviceServiceServer).StartDevice(ctx, req.(*StartDeviceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _DeviceService_OnPump_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -281,14 +213,6 @@ var DeviceService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "trading.DeviceService",
 	HandlerType: (*DeviceServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "GetData",
-			Handler:    _DeviceService_GetData_Handler,
-		},
-		{
-			MethodName: "StartDevice",
-			Handler:    _DeviceService_StartDevice_Handler,
-		},
 		{
 			MethodName: "OnPump",
 			Handler:    _DeviceService_OnPump_Handler,
