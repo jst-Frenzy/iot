@@ -2,12 +2,13 @@ package main
 
 import (
 	"context"
-	"github.com/jst-Frenzy/iot/backend/dataIntegrator/internal/app"
-	"github.com/jst-Frenzy/iot/backend/dataIntegrator/internal/config/configuration"
-	"github.com/jst-Frenzy/iot/backend/dataIntegrator/internal/config/credentials"
 	"log/slog"
 	"os/signal"
 	"syscall"
+
+	"github.com/jst-Frenzy/iot/backend/dataIntegrator/internal/app"
+	"github.com/jst-Frenzy/iot/backend/dataIntegrator/internal/config/configuration"
+	"github.com/jst-Frenzy/iot/backend/dataIntegrator/internal/config/credentials"
 )
 
 func main() {

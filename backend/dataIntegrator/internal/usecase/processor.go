@@ -3,8 +3,9 @@ package usecase
 import (
 	"context"
 	"fmt"
-	"github.com/jst-Frenzy/iot/backend/dataIntegrator/internal/infra/ws"
 	"time"
+
+	"github.com/jst-Frenzy/iot/backend/dataIntegrator/internal/infra/ws"
 )
 
 const (
@@ -25,8 +26,8 @@ const (
 type Device string
 
 const (
-	DeviceTemperatureSensor Device = "temperature sensor"
-	DeviceWetSensor         Device = "wet sensor"
+	DeviceTemperatureSensor Device = "temperature_sensor"
+	DeviceWetSensor         Device = "wet_sensor"
 	DeviceFan               Device = "fan"
 	DevicePump              Device = "pump"
 )
@@ -151,4 +152,12 @@ func (p *Processor) Process(ctx context.Context, wet, temperature int32) error {
 	}
 
 	return nil
+}
+
+func (p *Processor) GetDevices() ([]Device, error) {
+	return p.telemetryRepository.GetDevices()
+}
+
+func (p *Processor) GetTelemetryByPeriod(deviceName string, from time.Time, to time.Time) ([]Telemetry, error) {
+	return p.telemetryRepository.GetTelemetryByPeriod(deviceName, from, to)
 }

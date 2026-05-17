@@ -2,10 +2,11 @@ package ws
 
 import (
 	"context"
-	"github.com/gorilla/websocket"
 	"log/slog"
 	"net/http"
 	"sync"
+
+	"github.com/gorilla/websocket"
 )
 
 type DataForSend struct {
@@ -27,7 +28,7 @@ func New(addr string) *Server {
 	return &Server{
 		addr: addr,
 		upgrader: websocket.Upgrader{
-			CheckOrigin: func(r *http.Request) bool {
+			CheckOrigin: func(_ *http.Request) bool {
 				return true
 			},
 		},

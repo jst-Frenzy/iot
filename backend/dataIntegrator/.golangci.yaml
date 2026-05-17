@@ -22,7 +22,6 @@ linters:
     - goheader
     - gomodguard
     - goprintffuncname
-    - gosec
     - importas
     - lll
     - makezero

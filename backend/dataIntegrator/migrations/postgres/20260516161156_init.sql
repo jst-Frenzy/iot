@@ -8,8 +8,8 @@ create table if not exists devices
 
 insert into devices (name)
 values
-    ('temperature sensor'),
-    ('wet sensor'),
+    ('temperature_sensor'),
+    ('wet_sensor'),
     ('fan'),
     ('pump');
 

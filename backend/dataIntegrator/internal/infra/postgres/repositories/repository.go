@@ -1,9 +1,10 @@
 package repositories
 
 import (
+	"time"
+
 	"github.com/jst-Frenzy/iot/backend/dataIntegrator/internal/usecase"
 	"gorm.io/gorm"
-	"time"
 )
 
 type PostgresDeps struct {

@@ -5,3 +5,6 @@ GRPCServer:
   Address: "0.0.0.0:8090"
   MaxReceiveMsgSize: 52428800
   MaxSendMsgSize: 52428800
+
+HTTPServer:
+  Address: "0.0.0.0:8098"

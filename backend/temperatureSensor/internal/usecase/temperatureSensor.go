@@ -23,6 +23,7 @@ func (t *TemperatureSensor) GenerateData() int32 {
 
 	if t.isFreezing {
 		t.currentTemp -= val
+		return t.currentTemp
 	}
 	t.currentTemp += val
 

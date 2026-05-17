@@ -23,6 +23,7 @@ func (t *WetSensor) GenerateData() int32 {
 
 	if t.isWetting {
 		t.currentWet += val
+		return t.currentWet
 	}
 	t.currentWet -= val
 

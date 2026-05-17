@@ -56,8 +56,8 @@ func New(conf *configuration.Config, cred *credentials.Credentials) (*App, error
 	}
 
 	fanDevice, err := fan.New(&fan.Config{
-		Address:        cred.Pump.Address,
-		MaxMessageSize: cred.Pump.MaxMessageSize,
+		Address:        cred.Fan.Address,
+		MaxMessageSize: cred.Fan.MaxMessageSize,
 	})
 	if err != nil {
 		return nil, fmt.Errorf("cannot create fan: %w", err)

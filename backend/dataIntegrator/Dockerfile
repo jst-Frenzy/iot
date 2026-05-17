@@ -17,6 +17,6 @@ COPY config.yaml .
 COPY credentials.yaml .
 COPY migrations ./migrations
 
-EXPOSE 8090 8099
+EXPOSE 8090 8099 8098
 
 CMD ["./dataIntegrator"]

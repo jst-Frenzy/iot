@@ -3,10 +3,11 @@ package datacontroller
 import (
 	"context"
 	"fmt"
+	"log/slog"
+
 	dcs "github.com/jst-Frenzy/iot/backend/dataController/api/grpc/gen"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-	"log/slog"
 )
 
 type Client struct {
