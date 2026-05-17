@@ -20,7 +20,7 @@ func NewPostgres(d *PostgresDeps) *Postgres {
 	}
 }
 
-func (p *Postgres) InsertAction(action usecase.ActionType, deviceName string) error {
+func (p *Postgres) InsertAction(action usecase.ActionType, deviceName usecase.Device) error {
 	query := `
 		INSERT INTO actions_log (device_name, action)
 		VALUES ($1, $2)

@@ -10,6 +10,7 @@ import (
 	"github.com/jst-Frenzy/iot/backend/dataIntegrator/internal/infra/grpc/services"
 	"github.com/jst-Frenzy/iot/backend/dataIntegrator/internal/infra/postgres/repositories"
 	"github.com/jst-Frenzy/iot/backend/dataIntegrator/internal/infra/ws"
+	"github.com/jst-Frenzy/iot/backend/dataIntegrator/internal/integrations/grpc/datacontroller"
 	"github.com/jst-Frenzy/iot/backend/dataIntegrator/internal/usecase"
 	"log/slog"
 	"sync"
@@ -31,9 +32,15 @@ func New(conf *configuration.Config, cred *credentials.Credentials) (*App, error
 
 	dataSender := ws.New(conf.WsServer.Address)
 
+	dataController, err := datacontroller.New(&datacontroller.Config{
+		Address:        cred.DataController.Address,
+		MaxMessageSize: cred.DataController.MaxMessageSize,
+	})
+
 	processor := usecase.NewProcessor(&usecase.ProcessorDeps{
 		TelemetryRepository: repo,
 		DataSender:          dataSender,
+		ControllerManager:   dataController,
 	})
 
 	grpcServer, err := grpc.New(&grpc.Deps{

@@ -11,22 +11,22 @@ type TemperatureSensor struct {
 }
 
 func NewTemperatureSensor() *TemperatureSensor {
-	return &TemperatureSensor{}
+	return &TemperatureSensor{
+		isFreezing:  false,
+		currentTemp: 22,
+	}
 }
 
 func (t *TemperatureSensor) GenerateData() int32 {
-	if t.isFreezing {
-		r := rand.New(rand.NewSource(time.Now().UnixNano()))
-		val := int32(r.Intn(2) + 1)
-		t.currentTemp -= val
-		return t.currentTemp
-	}
-
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
-	val := int32(r.Intn(26) + 10)
-	t.currentTemp = val
+	val := int32(r.Intn(2) + 1)
 
-	return val
+	if t.isFreezing {
+		t.currentTemp -= val
+	}
+	t.currentTemp += val
+
+	return t.currentTemp
 }
 
 func (t *TemperatureSensor) ChangeMode() {

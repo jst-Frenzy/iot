@@ -6,28 +6,29 @@ import (
 )
 
 type WetSensor struct {
-	iWetting   bool
+	isWetting  bool
 	currentWet int32
 }
 
 func NewTemperatureSensor() *WetSensor {
-	return &WetSensor{}
+	return &WetSensor{
+		isWetting:  false,
+		currentWet: 55,
+	}
 }
 
 func (t *WetSensor) GenerateData() int32 {
-	if t.iWetting {
-		r := rand.New(rand.NewSource(time.Now().UnixNano()))
-		val := int32(r.Intn(2) + 1)
-		t.currentWet += val
-		return t.currentWet
-	}
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
-	val := int32(r.Intn(50) + 30)
-	t.currentWet = val
+	val := int32(r.Intn(3) + 1)
 
-	return val
+	if t.isWetting {
+		t.currentWet += val
+	}
+	t.currentWet -= val
+
+	return t.currentWet
 }
 
 func (t *WetSensor) ChangeMode() {
-	t.iWetting = !t.iWetting
+	t.isWetting = !t.isWetting
 }

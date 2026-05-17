@@ -7,7 +7,7 @@ import (
 )
 
 type processor interface {
-	Process(int32, int32) error
+	Process(context.Context, int32, int32) error
 }
 
 type AccepterDeps struct {
@@ -30,5 +30,5 @@ func (a *Accepter) Register(server *grpc.Server) {
 }
 
 func (a *Accepter) AcceptData(ctx context.Context, req *dis.AcceptDataRequest) (*dis.AcceptDataResponse, error) {
-	return &dis.AcceptDataResponse{}, a.processor.Process(req.Wet, req.Temperature)
+	return &dis.AcceptDataResponse{}, a.processor.Process(ctx, req.Wet, req.Temperature)
 }
