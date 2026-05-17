@@ -1,7 +1,7 @@
 WsServer:
-  Address: "127.0.0.1:8099"
+  Address: "0.0.0.0:8099"
 
 GRPCServer:
-  Address: "127.0.0.1:8091"
+  Address: "0.0.0.0:8090"
   MaxReceiveMsgSize: 52428800
   MaxSendMsgSize: 52428800

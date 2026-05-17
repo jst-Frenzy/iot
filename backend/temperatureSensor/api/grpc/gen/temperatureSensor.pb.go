@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v5.29.3
-// source: api/grpc/proto/temperatureSensor.proto
+// source: api/grpc/proto/pump.proto
 
 package temperatureSensor
 
@@ -105,7 +105,7 @@ var File_api_grpc_proto_temperatureSensor_proto protoreflect.FileDescriptor
 
 const file_api_grpc_proto_temperatureSensor_proto_rawDesc = "" +
 	"\n" +
-	"&api/grpc/proto/temperatureSensor.proto\x12\x11temperatureSensor\"\x10\n" +
+	"&api/grpc/proto/pump.proto\x12\x11temperatureSensor\"\x10\n" +
 	"\x0eGetDataRequest\"%\n" +
 	"\x0fGetDataResponse\x12\x12\n" +
 	"\x04data\x18\x01 \x01(\x05R\x04data2l\n" +

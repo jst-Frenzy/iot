@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package pump;
+
+option go_package = "github.com/jst-Frenzy/iot/backend/pump/api/grpc/gen;fan";
+
+service fanService {
+  rpc On(OnRequest) returns (OnResponse);
+  rpc Off(OffRequest) returns (OffResponse);
+}
+
+message OnRequest{}
+
+message OnResponse{}
+
+message OffRequest{}
+
+message OffResponse{}

@@ -14,7 +14,9 @@ WORKDIR /root/
 
 COPY --from=builder /app/dataIntegrator .
 COPY config.yaml .
+COPY credentials.yaml .
+COPY migrations ./migrations
 
-EXPOSE 8091 8099
+EXPOSE 8090 8099
 
 CMD ["./dataIntegrator"]

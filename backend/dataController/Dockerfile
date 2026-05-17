@@ -14,6 +14,7 @@ WORKDIR /root/
 
 COPY --from=builder /app/dataController .
 COPY config.yaml .
+COPY credentials.yaml .
 
 EXPOSE 8095
 

@@ -22,7 +22,7 @@ type App struct {
 func New(conf *configuration.Config, cred *credentials.Credentials) (*App, error) {
 	postgres, err := data_base.InitPostgres(cred)
 	if err != nil {
-		return nil, fmt.Errorf("cannot init db")
+		return nil, fmt.Errorf("cannot init db: %w", err)
 	}
 
 	repo := repositories.NewPostgres(&repositories.PostgresDeps{
