@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.6.1
 // - protoc             v5.29.3
-// source: api/grpc/proto/pump.proto
+// source: api/grpc/proto/fan.proto
 
 package fan
 
@@ -155,5 +155,5 @@ var FanService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "api/grpc/proto/pump.proto",
+	Metadata: "api/grpc/proto/fan.proto",
 }

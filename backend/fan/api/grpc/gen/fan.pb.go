@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v5.29.3
-// source: api/grpc/proto/pump.proto
+// source: api/grpc/proto/fan.proto
 
 package fan
 
@@ -169,7 +169,7 @@ var File_api_grpc_proto_fan_proto protoreflect.FileDescriptor
 
 const file_api_grpc_proto_fan_proto_rawDesc = "" +
 	"\n" +
-	"\x18api/grpc/proto/pump.proto\x12\x03fan\"\v\n" +
+	"\x18api/grpc/proto/fan.proto\x12\x03fan\"\v\n" +
 	"\tOnRequest\"\f\n" +
 	"\n" +
 	"OnResponse\"\f\n" +
