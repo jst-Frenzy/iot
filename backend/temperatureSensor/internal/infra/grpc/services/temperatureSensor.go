@@ -8,6 +8,7 @@ import (
 
 type device interface {
 	GenerateData() int32
+	ChangeMode()
 }
 
 type TemperatureSensorDeps struct {
@@ -33,4 +34,9 @@ func (t *TemperatureSensor) GetData(ctx context.Context, request *pb.GetDataRequ
 	return &pb.GetDataResponse{
 		Data: t.device.GenerateData(),
 	}, nil
+}
+
+func (t *TemperatureSensor) ChangeMode(ctx context.Context, request *pb.ChangeModRequest) (*pb.ChangeModResponse, error) {
+	t.device.ChangeMode()
+	return &pb.ChangeModResponse{}, nil
 }

@@ -19,139 +19,139 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	FanService_On_FullMethodName  = "/pump.fanService/On"
-	FanService_Off_FullMethodName = "/pump.fanService/Off"
+	PumpService_On_FullMethodName  = "/pump.PumpService/On"
+	PumpService_Off_FullMethodName = "/pump.PumpService/Off"
 )
 
-// FanServiceClient is the client API for FanService service.
+// PumpServiceClient is the client API for PumpService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type FanServiceClient interface {
+type PumpServiceClient interface {
 	On(ctx context.Context, in *OnRequest, opts ...grpc.CallOption) (*OnResponse, error)
 	Off(ctx context.Context, in *OffRequest, opts ...grpc.CallOption) (*OffResponse, error)
 }
 
-type fanServiceClient struct {
+type pumpServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewFanServiceClient(cc grpc.ClientConnInterface) FanServiceClient {
-	return &fanServiceClient{cc}
+func NewPumpServiceClient(cc grpc.ClientConnInterface) PumpServiceClient {
+	return &pumpServiceClient{cc}
 }
 
-func (c *fanServiceClient) On(ctx context.Context, in *OnRequest, opts ...grpc.CallOption) (*OnResponse, error) {
+func (c *pumpServiceClient) On(ctx context.Context, in *OnRequest, opts ...grpc.CallOption) (*OnResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(OnResponse)
-	err := c.cc.Invoke(ctx, FanService_On_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, PumpService_On_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *fanServiceClient) Off(ctx context.Context, in *OffRequest, opts ...grpc.CallOption) (*OffResponse, error) {
+func (c *pumpServiceClient) Off(ctx context.Context, in *OffRequest, opts ...grpc.CallOption) (*OffResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(OffResponse)
-	err := c.cc.Invoke(ctx, FanService_Off_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, PumpService_Off_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// FanServiceServer is the server API for FanService service.
-// All implementations must embed UnimplementedFanServiceServer
+// PumpServiceServer is the server API for PumpService service.
+// All implementations must embed UnimplementedPumpServiceServer
 // for forward compatibility.
-type FanServiceServer interface {
+type PumpServiceServer interface {
 	On(context.Context, *OnRequest) (*OnResponse, error)
 	Off(context.Context, *OffRequest) (*OffResponse, error)
-	mustEmbedUnimplementedFanServiceServer()
+	mustEmbedUnimplementedPumpServiceServer()
 }
 
-// UnimplementedFanServiceServer must be embedded to have
+// UnimplementedPumpServiceServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedFanServiceServer struct{}
+type UnimplementedPumpServiceServer struct{}
 
-func (UnimplementedFanServiceServer) On(context.Context, *OnRequest) (*OnResponse, error) {
+func (UnimplementedPumpServiceServer) On(context.Context, *OnRequest) (*OnResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method On not implemented")
 }
-func (UnimplementedFanServiceServer) Off(context.Context, *OffRequest) (*OffResponse, error) {
+func (UnimplementedPumpServiceServer) Off(context.Context, *OffRequest) (*OffResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Off not implemented")
 }
-func (UnimplementedFanServiceServer) mustEmbedUnimplementedFanServiceServer() {}
-func (UnimplementedFanServiceServer) testEmbeddedByValue()                    {}
+func (UnimplementedPumpServiceServer) mustEmbedUnimplementedPumpServiceServer() {}
+func (UnimplementedPumpServiceServer) testEmbeddedByValue()                     {}
 
-// UnsafeFanServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to FanServiceServer will
+// UnsafePumpServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to PumpServiceServer will
 // result in compilation errors.
-type UnsafeFanServiceServer interface {
-	mustEmbedUnimplementedFanServiceServer()
+type UnsafePumpServiceServer interface {
+	mustEmbedUnimplementedPumpServiceServer()
 }
 
-func RegisterFanServiceServer(s grpc.ServiceRegistrar, srv FanServiceServer) {
-	// If the following call panics, it indicates UnimplementedFanServiceServer was
+func RegisterPumpServiceServer(s grpc.ServiceRegistrar, srv PumpServiceServer) {
+	// If the following call panics, it indicates UnimplementedPumpServiceServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&FanService_ServiceDesc, srv)
+	s.RegisterService(&PumpService_ServiceDesc, srv)
 }
 
-func _FanService_On_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _PumpService_On_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(OnRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FanServiceServer).On(ctx, in)
+		return srv.(PumpServiceServer).On(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: FanService_On_FullMethodName,
+		FullMethod: PumpService_On_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FanServiceServer).On(ctx, req.(*OnRequest))
+		return srv.(PumpServiceServer).On(ctx, req.(*OnRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FanService_Off_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _PumpService_Off_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(OffRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FanServiceServer).Off(ctx, in)
+		return srv.(PumpServiceServer).Off(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: FanService_Off_FullMethodName,
+		FullMethod: PumpService_Off_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FanServiceServer).Off(ctx, req.(*OffRequest))
+		return srv.(PumpServiceServer).Off(ctx, req.(*OffRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// FanService_ServiceDesc is the grpc.ServiceDesc for FanService service.
+// PumpService_ServiceDesc is the grpc.ServiceDesc for PumpService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var FanService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pump.fanService",
-	HandlerType: (*FanServiceServer)(nil),
+var PumpService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "pump.PumpService",
+	HandlerType: (*PumpServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "On",
-			Handler:    _FanService_On_Handler,
+			Handler:    _PumpService_On_Handler,
 		},
 		{
 			MethodName: "Off",
-			Handler:    _FanService_Off_Handler,
+			Handler:    _PumpService_Off_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

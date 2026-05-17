@@ -8,6 +8,7 @@ import (
 
 type device interface {
 	GenerateData() int32
+	ChangeMode()
 }
 
 type WetSensorDeps struct {
@@ -33,4 +34,9 @@ func (t *WetSensor) GetData(ctx context.Context, request *pb.GetDataRequest) (*p
 	return &pb.GetDataResponse{
 		Data: t.device.GenerateData(),
 	}, nil
+}
+
+func (t *WetSensor) ChangeMode(ctx context.Context, request *pb.ChangeModRequest) (*pb.ChangeModResponse, error) {
+	t.device.ChangeMode()
+	return &pb.ChangeModResponse{}, nil
 }

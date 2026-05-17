@@ -6,6 +6,7 @@ option go_package = "github.com/jst-Frenzy/iot/backend/wetSensor/api/grpc/gen;we
 
 service WetSensorService {
   rpc GetData(GetDataRequest) returns (GetDataResponse);
+  rpc ChangeMode(ChangeModRequest) returns (ChangeModResponse);
 }
 
 message GetDataRequest{}
@@ -13,3 +14,7 @@ message GetDataRequest{}
 message GetDataResponse{
   int32 data = 1;
 }
+
+message ChangeModRequest{}
+
+message ChangeModResponse{}

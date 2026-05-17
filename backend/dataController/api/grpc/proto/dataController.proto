@@ -7,19 +7,29 @@ option go_package = "github.com/jst-Frenzy/iot/backend/dataController/api/grpc/g
 service DeviceService {
   rpc GetData(GetDataRequest) returns (GetDataResponse);
   rpc StartDevice(StartDeviceRequest) returns (StartDeviceResponse);
+  rpc OnPump(OnPumpRequest) returns (OnPumpResponse);
+  rpc OffPump(OffPumpRequest) returns (OffPumpResponse);
+  rpc OnFan(OnFanRequest) returns (OnFanResponse);
+  rpc OffFan(OffFanRequest) returns (OffFanResponse);
 }
 
-message GetDataRequest{
-}
+message GetDataRequest{}
 
 message GetDataResponse{
   string data = 1;
 }
 
-message StartDeviceRequest{
+message StartDeviceRequest{}
+message StartDeviceResponse{}
 
-}
+message OnPumpRequest{}
+message OnPumpResponse{}
 
-message StartDeviceResponse{
+message OffPumpRequest{}
+message OffPumpResponse{}
 
-}
+message OnFanRequest{}
+message OnFanResponse{}
+
+message OffFanRequest{}
+message OffFanResponse{}

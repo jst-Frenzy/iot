@@ -173,6 +173,294 @@ func (*StartDeviceResponse) Descriptor() ([]byte, []int) {
 	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{3}
 }
 
+type OnPumpRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OnPumpRequest) Reset() {
+	*x = OnPumpRequest{}
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OnPumpRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OnPumpRequest) ProtoMessage() {}
+
+func (x *OnPumpRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OnPumpRequest.ProtoReflect.Descriptor instead.
+func (*OnPumpRequest) Descriptor() ([]byte, []int) {
+	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{4}
+}
+
+type OnPumpResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OnPumpResponse) Reset() {
+	*x = OnPumpResponse{}
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OnPumpResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OnPumpResponse) ProtoMessage() {}
+
+func (x *OnPumpResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OnPumpResponse.ProtoReflect.Descriptor instead.
+func (*OnPumpResponse) Descriptor() ([]byte, []int) {
+	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{5}
+}
+
+type OffPumpRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OffPumpRequest) Reset() {
+	*x = OffPumpRequest{}
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OffPumpRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OffPumpRequest) ProtoMessage() {}
+
+func (x *OffPumpRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OffPumpRequest.ProtoReflect.Descriptor instead.
+func (*OffPumpRequest) Descriptor() ([]byte, []int) {
+	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{6}
+}
+
+type OffPumpResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OffPumpResponse) Reset() {
+	*x = OffPumpResponse{}
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OffPumpResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OffPumpResponse) ProtoMessage() {}
+
+func (x *OffPumpResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OffPumpResponse.ProtoReflect.Descriptor instead.
+func (*OffPumpResponse) Descriptor() ([]byte, []int) {
+	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{7}
+}
+
+type OnFanRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OnFanRequest) Reset() {
+	*x = OnFanRequest{}
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OnFanRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OnFanRequest) ProtoMessage() {}
+
+func (x *OnFanRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OnFanRequest.ProtoReflect.Descriptor instead.
+func (*OnFanRequest) Descriptor() ([]byte, []int) {
+	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{8}
+}
+
+type OnFanResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OnFanResponse) Reset() {
+	*x = OnFanResponse{}
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OnFanResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OnFanResponse) ProtoMessage() {}
+
+func (x *OnFanResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OnFanResponse.ProtoReflect.Descriptor instead.
+func (*OnFanResponse) Descriptor() ([]byte, []int) {
+	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{9}
+}
+
+type OffFanRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OffFanRequest) Reset() {
+	*x = OffFanRequest{}
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OffFanRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OffFanRequest) ProtoMessage() {}
+
+func (x *OffFanRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OffFanRequest.ProtoReflect.Descriptor instead.
+func (*OffFanRequest) Descriptor() ([]byte, []int) {
+	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{10}
+}
+
+type OffFanResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OffFanResponse) Reset() {
+	*x = OffFanResponse{}
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OffFanResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OffFanResponse) ProtoMessage() {}
+
+func (x *OffFanResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_grpc_proto_dataController_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OffFanResponse.ProtoReflect.Descriptor instead.
+func (*OffFanResponse) Descriptor() ([]byte, []int) {
+	return file_api_grpc_proto_dataController_proto_rawDescGZIP(), []int{11}
+}
+
 var File_api_grpc_proto_dataController_proto protoreflect.FileDescriptor
 
 const file_api_grpc_proto_dataController_proto_rawDesc = "" +
@@ -182,10 +470,22 @@ const file_api_grpc_proto_dataController_proto_rawDesc = "" +
 	"\x0fGetDataResponse\x12\x12\n" +
 	"\x04data\x18\x01 \x01(\tR\x04data\"\x14\n" +
 	"\x12StartDeviceRequest\"\x15\n" +
-	"\x13StartDeviceResponse2\x97\x01\n" +
+	"\x13StartDeviceResponse\"\x0f\n" +
+	"\rOnPumpRequest\"\x10\n" +
+	"\x0eOnPumpResponse\"\x10\n" +
+	"\x0eOffPumpRequest\"\x11\n" +
+	"\x0fOffPumpResponse\"\x0e\n" +
+	"\fOnFanRequest\"\x0f\n" +
+	"\rOnFanResponse\"\x0f\n" +
+	"\rOffFanRequest\"\x10\n" +
+	"\x0eOffFanResponse2\x83\x03\n" +
 	"\rDeviceService\x12<\n" +
 	"\aGetData\x12\x17.trading.GetDataRequest\x1a\x18.trading.GetDataResponse\x12H\n" +
-	"\vStartDevice\x12\x1b.trading.StartDeviceRequest\x1a\x1c.trading.StartDeviceResponseBNZLgithub.com/jst-Frenzy/iot/backend/dataController/api/grpc/gen;dataControllerb\x06proto3"
+	"\vStartDevice\x12\x1b.trading.StartDeviceRequest\x1a\x1c.trading.StartDeviceResponse\x129\n" +
+	"\x06OnPump\x12\x16.trading.OnPumpRequest\x1a\x17.trading.OnPumpResponse\x12<\n" +
+	"\aOffPump\x12\x17.trading.OffPumpRequest\x1a\x18.trading.OffPumpResponse\x126\n" +
+	"\x05OnFan\x12\x15.trading.OnFanRequest\x1a\x16.trading.OnFanResponse\x129\n" +
+	"\x06OffFan\x12\x16.trading.OffFanRequest\x1a\x17.trading.OffFanResponseBNZLgithub.com/jst-Frenzy/iot/backend/dataController/api/grpc/gen;dataControllerb\x06proto3"
 
 var (
 	file_api_grpc_proto_dataController_proto_rawDescOnce sync.Once
@@ -199,23 +499,39 @@ func file_api_grpc_proto_dataController_proto_rawDescGZIP() []byte {
 	return file_api_grpc_proto_dataController_proto_rawDescData
 }
 
-var file_api_grpc_proto_dataController_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_api_grpc_proto_dataController_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_api_grpc_proto_dataController_proto_goTypes = []any{
 	(*GetDataRequest)(nil),      // 0: trading.GetDataRequest
 	(*GetDataResponse)(nil),     // 1: trading.GetDataResponse
 	(*StartDeviceRequest)(nil),  // 2: trading.StartDeviceRequest
 	(*StartDeviceResponse)(nil), // 3: trading.StartDeviceResponse
+	(*OnPumpRequest)(nil),       // 4: trading.OnPumpRequest
+	(*OnPumpResponse)(nil),      // 5: trading.OnPumpResponse
+	(*OffPumpRequest)(nil),      // 6: trading.OffPumpRequest
+	(*OffPumpResponse)(nil),     // 7: trading.OffPumpResponse
+	(*OnFanRequest)(nil),        // 8: trading.OnFanRequest
+	(*OnFanResponse)(nil),       // 9: trading.OnFanResponse
+	(*OffFanRequest)(nil),       // 10: trading.OffFanRequest
+	(*OffFanResponse)(nil),      // 11: trading.OffFanResponse
 }
 var file_api_grpc_proto_dataController_proto_depIdxs = []int32{
-	0, // 0: trading.DeviceService.GetData:input_type -> trading.GetDataRequest
-	2, // 1: trading.DeviceService.StartDevice:input_type -> trading.StartDeviceRequest
-	1, // 2: trading.DeviceService.GetData:output_type -> trading.GetDataResponse
-	3, // 3: trading.DeviceService.StartDevice:output_type -> trading.StartDeviceResponse
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0,  // 0: trading.DeviceService.GetData:input_type -> trading.GetDataRequest
+	2,  // 1: trading.DeviceService.StartDevice:input_type -> trading.StartDeviceRequest
+	4,  // 2: trading.DeviceService.OnPump:input_type -> trading.OnPumpRequest
+	6,  // 3: trading.DeviceService.OffPump:input_type -> trading.OffPumpRequest
+	8,  // 4: trading.DeviceService.OnFan:input_type -> trading.OnFanRequest
+	10, // 5: trading.DeviceService.OffFan:input_type -> trading.OffFanRequest
+	1,  // 6: trading.DeviceService.GetData:output_type -> trading.GetDataResponse
+	3,  // 7: trading.DeviceService.StartDevice:output_type -> trading.StartDeviceResponse
+	5,  // 8: trading.DeviceService.OnPump:output_type -> trading.OnPumpResponse
+	7,  // 9: trading.DeviceService.OffPump:output_type -> trading.OffPumpResponse
+	9,  // 10: trading.DeviceService.OnFan:output_type -> trading.OnFanResponse
+	11, // 11: trading.DeviceService.OffFan:output_type -> trading.OffFanResponse
+	6,  // [6:12] is the sub-list for method output_type
+	0,  // [0:6] is the sub-list for method input_type
+	0,  // [0:0] is the sub-list for extension type_name
+	0,  // [0:0] is the sub-list for extension extendee
+	0,  // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_api_grpc_proto_dataController_proto_init() }
@@ -229,7 +545,7 @@ func file_api_grpc_proto_dataController_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_grpc_proto_dataController_proto_rawDesc), len(file_api_grpc_proto_dataController_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

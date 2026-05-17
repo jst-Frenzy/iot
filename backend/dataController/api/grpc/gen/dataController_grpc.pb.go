@@ -21,6 +21,10 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	DeviceService_GetData_FullMethodName     = "/trading.DeviceService/GetData"
 	DeviceService_StartDevice_FullMethodName = "/trading.DeviceService/StartDevice"
+	DeviceService_OnPump_FullMethodName      = "/trading.DeviceService/OnPump"
+	DeviceService_OffPump_FullMethodName     = "/trading.DeviceService/OffPump"
+	DeviceService_OnFan_FullMethodName       = "/trading.DeviceService/OnFan"
+	DeviceService_OffFan_FullMethodName      = "/trading.DeviceService/OffFan"
 )
 
 // DeviceServiceClient is the client API for DeviceService service.
@@ -29,6 +33,10 @@ const (
 type DeviceServiceClient interface {
 	GetData(ctx context.Context, in *GetDataRequest, opts ...grpc.CallOption) (*GetDataResponse, error)
 	StartDevice(ctx context.Context, in *StartDeviceRequest, opts ...grpc.CallOption) (*StartDeviceResponse, error)
+	OnPump(ctx context.Context, in *OnPumpRequest, opts ...grpc.CallOption) (*OnPumpResponse, error)
+	OffPump(ctx context.Context, in *OffPumpRequest, opts ...grpc.CallOption) (*OffPumpResponse, error)
+	OnFan(ctx context.Context, in *OnFanRequest, opts ...grpc.CallOption) (*OnFanResponse, error)
+	OffFan(ctx context.Context, in *OffFanRequest, opts ...grpc.CallOption) (*OffFanResponse, error)
 }
 
 type deviceServiceClient struct {
@@ -59,12 +67,56 @@ func (c *deviceServiceClient) StartDevice(ctx context.Context, in *StartDeviceRe
 	return out, nil
 }
 
+func (c *deviceServiceClient) OnPump(ctx context.Context, in *OnPumpRequest, opts ...grpc.CallOption) (*OnPumpResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(OnPumpResponse)
+	err := c.cc.Invoke(ctx, DeviceService_OnPump_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceServiceClient) OffPump(ctx context.Context, in *OffPumpRequest, opts ...grpc.CallOption) (*OffPumpResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(OffPumpResponse)
+	err := c.cc.Invoke(ctx, DeviceService_OffPump_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceServiceClient) OnFan(ctx context.Context, in *OnFanRequest, opts ...grpc.CallOption) (*OnFanResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(OnFanResponse)
+	err := c.cc.Invoke(ctx, DeviceService_OnFan_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *deviceServiceClient) OffFan(ctx context.Context, in *OffFanRequest, opts ...grpc.CallOption) (*OffFanResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(OffFanResponse)
+	err := c.cc.Invoke(ctx, DeviceService_OffFan_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DeviceServiceServer is the server API for DeviceService service.
 // All implementations must embed UnimplementedDeviceServiceServer
 // for forward compatibility.
 type DeviceServiceServer interface {
 	GetData(context.Context, *GetDataRequest) (*GetDataResponse, error)
 	StartDevice(context.Context, *StartDeviceRequest) (*StartDeviceResponse, error)
+	OnPump(context.Context, *OnPumpRequest) (*OnPumpResponse, error)
+	OffPump(context.Context, *OffPumpRequest) (*OffPumpResponse, error)
+	OnFan(context.Context, *OnFanRequest) (*OnFanResponse, error)
+	OffFan(context.Context, *OffFanRequest) (*OffFanResponse, error)
 	mustEmbedUnimplementedDeviceServiceServer()
 }
 
@@ -80,6 +132,18 @@ func (UnimplementedDeviceServiceServer) GetData(context.Context, *GetDataRequest
 }
 func (UnimplementedDeviceServiceServer) StartDevice(context.Context, *StartDeviceRequest) (*StartDeviceResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method StartDevice not implemented")
+}
+func (UnimplementedDeviceServiceServer) OnPump(context.Context, *OnPumpRequest) (*OnPumpResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method OnPump not implemented")
+}
+func (UnimplementedDeviceServiceServer) OffPump(context.Context, *OffPumpRequest) (*OffPumpResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method OffPump not implemented")
+}
+func (UnimplementedDeviceServiceServer) OnFan(context.Context, *OnFanRequest) (*OnFanResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method OnFan not implemented")
+}
+func (UnimplementedDeviceServiceServer) OffFan(context.Context, *OffFanRequest) (*OffFanResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method OffFan not implemented")
 }
 func (UnimplementedDeviceServiceServer) mustEmbedUnimplementedDeviceServiceServer() {}
 func (UnimplementedDeviceServiceServer) testEmbeddedByValue()                       {}
@@ -138,6 +202,78 @@ func _DeviceService_StartDevice_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DeviceService_OnPump_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OnPumpRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceServiceServer).OnPump(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceService_OnPump_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceServiceServer).OnPump(ctx, req.(*OnPumpRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceService_OffPump_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OffPumpRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceServiceServer).OffPump(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceService_OffPump_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceServiceServer).OffPump(ctx, req.(*OffPumpRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceService_OnFan_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OnFanRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceServiceServer).OnFan(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceService_OnFan_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceServiceServer).OnFan(ctx, req.(*OnFanRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DeviceService_OffFan_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OffFanRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DeviceServiceServer).OffFan(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DeviceService_OffFan_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DeviceServiceServer).OffFan(ctx, req.(*OffFanRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DeviceService_ServiceDesc is the grpc.ServiceDesc for DeviceService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -152,6 +288,22 @@ var DeviceService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "StartDevice",
 			Handler:    _DeviceService_StartDevice_Handler,
+		},
+		{
+			MethodName: "OnPump",
+			Handler:    _DeviceService_OnPump_Handler,
+		},
+		{
+			MethodName: "OffPump",
+			Handler:    _DeviceService_OffPump_Handler,
+		},
+		{
+			MethodName: "OnFan",
+			Handler:    _DeviceService_OnFan_Handler,
+		},
+		{
+			MethodName: "OffFan",
+			Handler:    _DeviceService_OffFan_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

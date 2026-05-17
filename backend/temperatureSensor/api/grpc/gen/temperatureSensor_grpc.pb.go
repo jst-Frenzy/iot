@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.6.1
 // - protoc             v5.29.3
-// source: api/grpc/proto/pump.proto
+// source: api/grpc/proto/temperatureSensor.proto
 
 package temperatureSensor
 
@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TemperatureSensorService_GetData_FullMethodName = "/temperatureSensor.TemperatureSensorService/GetData"
+	TemperatureSensorService_GetData_FullMethodName    = "/temperatureSensor.TemperatureSensorService/GetData"
+	TemperatureSensorService_ChangeMode_FullMethodName = "/temperatureSensor.TemperatureSensorService/ChangeMode"
 )
 
 // TemperatureSensorServiceClient is the client API for TemperatureSensorService service.
@@ -27,6 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TemperatureSensorServiceClient interface {
 	GetData(ctx context.Context, in *GetDataRequest, opts ...grpc.CallOption) (*GetDataResponse, error)
+	ChangeMode(ctx context.Context, in *ChangeModRequest, opts ...grpc.CallOption) (*ChangeModResponse, error)
 }
 
 type temperatureSensorServiceClient struct {
@@ -47,11 +49,22 @@ func (c *temperatureSensorServiceClient) GetData(ctx context.Context, in *GetDat
 	return out, nil
 }
 
+func (c *temperatureSensorServiceClient) ChangeMode(ctx context.Context, in *ChangeModRequest, opts ...grpc.CallOption) (*ChangeModResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ChangeModResponse)
+	err := c.cc.Invoke(ctx, TemperatureSensorService_ChangeMode_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TemperatureSensorServiceServer is the server API for TemperatureSensorService service.
 // All implementations must embed UnimplementedTemperatureSensorServiceServer
 // for forward compatibility.
 type TemperatureSensorServiceServer interface {
 	GetData(context.Context, *GetDataRequest) (*GetDataResponse, error)
+	ChangeMode(context.Context, *ChangeModRequest) (*ChangeModResponse, error)
 	mustEmbedUnimplementedTemperatureSensorServiceServer()
 }
 
@@ -64,6 +77,9 @@ type UnimplementedTemperatureSensorServiceServer struct{}
 
 func (UnimplementedTemperatureSensorServiceServer) GetData(context.Context, *GetDataRequest) (*GetDataResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetData not implemented")
+}
+func (UnimplementedTemperatureSensorServiceServer) ChangeMode(context.Context, *ChangeModRequest) (*ChangeModResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ChangeMode not implemented")
 }
 func (UnimplementedTemperatureSensorServiceServer) mustEmbedUnimplementedTemperatureSensorServiceServer() {
 }
@@ -105,6 +121,24 @@ func _TemperatureSensorService_GetData_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TemperatureSensorService_ChangeMode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ChangeModRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TemperatureSensorServiceServer).ChangeMode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TemperatureSensorService_ChangeMode_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TemperatureSensorServiceServer).ChangeMode(ctx, req.(*ChangeModRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TemperatureSensorService_ServiceDesc is the grpc.ServiceDesc for TemperatureSensorService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -116,7 +150,11 @@ var TemperatureSensorService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "GetData",
 			Handler:    _TemperatureSensorService_GetData_Handler,
 		},
+		{
+			MethodName: "ChangeMode",
+			Handler:    _TemperatureSensorService_ChangeMode_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "api/grpc/proto/pump.proto",
+	Metadata: "api/grpc/proto/temperatureSensor.proto",
 }

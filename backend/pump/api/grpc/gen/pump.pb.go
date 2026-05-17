@@ -175,9 +175,8 @@ const file_api_grpc_proto_pump_proto_rawDesc = "" +
 	"OnResponse\"\f\n" +
 	"\n" +
 	"OffRequest\"\r\n" +
-	"\vOffResponse2a\n" +
-	"\n" +
-	"fanService\x12'\n" +
+	"\vOffResponse2b\n" +
+	"\vPumpService\x12'\n" +
 	"\x02On\x12\x0f.pump.OnRequest\x1a\x10.pump.OnResponse\x12*\n" +
 	"\x03Off\x12\x10.pump.OffRequest\x1a\x11.pump.OffResponseB9Z7github.com/jst-Frenzy/iot/backend/pump/api/grpc/gen;fanb\x06proto3"
 
@@ -201,10 +200,10 @@ var file_api_grpc_proto_pump_proto_goTypes = []any{
 	(*OffResponse)(nil), // 3: pump.OffResponse
 }
 var file_api_grpc_proto_pump_proto_depIdxs = []int32{
-	0, // 0: pump.fanService.On:input_type -> pump.OnRequest
-	2, // 1: pump.fanService.Off:input_type -> pump.OffRequest
-	1, // 2: pump.fanService.On:output_type -> pump.OnResponse
-	3, // 3: pump.fanService.Off:output_type -> pump.OffResponse
+	0, // 0: pump.PumpService.On:input_type -> pump.OnRequest
+	2, // 1: pump.PumpService.Off:input_type -> pump.OffRequest
+	1, // 2: pump.PumpService.On:output_type -> pump.OnResponse
+	3, // 3: pump.PumpService.Off:output_type -> pump.OffResponse
 	2, // [2:4] is the sub-list for method output_type
 	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

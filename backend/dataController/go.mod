@@ -5,7 +5,7 @@ go 1.26.2
 require (
 	github.com/go-playground/validator/v10 v10.30.2
 	github.com/jst-Frenzy/iot/backend/dataIntegrator v0.0.0-20260516153807-59924738bdef
-	github.com/jst-Frenzy/iot/backend/temperatureSensor v0.0.0-20260516153807-59924738bdef
+	github.com/jst-Frenzy/iot/backend/temperatureSensor v0.0.0-20260517133750-417b8965e8d2
 	github.com/jst-Frenzy/iot/backend/wetSensor v0.0.0-20260516153807-59924738bdef
 	github.com/spf13/viper v1.21.0
 	google.golang.org/grpc v1.81.1
@@ -18,6 +18,8 @@ require (
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/go-viper/mapstructure/v2 v2.4.0 // indirect
+	github.com/jst-Frenzy/iot/backend/fan v0.0.0-20260517142446-d1d12b63525a // indirect
+	github.com/jst-Frenzy/iot/backend/pump v0.0.0-20260517142446-d1d12b63525a // indirect
 	github.com/leodido/go-urn v1.4.0 // indirect
 	github.com/pelletier/go-toml/v2 v2.2.4 // indirect
 	github.com/sagikazarmark/locafero v0.11.0 // indirect

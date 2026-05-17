@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	WetSensorService_GetData_FullMethodName = "/wetSensor.WetSensorService/GetData"
+	WetSensorService_GetData_FullMethodName    = "/wetSensor.WetSensorService/GetData"
+	WetSensorService_ChangeMode_FullMethodName = "/wetSensor.WetSensorService/ChangeMode"
 )
 
 // WetSensorServiceClient is the client API for WetSensorService service.
@@ -27,6 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type WetSensorServiceClient interface {
 	GetData(ctx context.Context, in *GetDataRequest, opts ...grpc.CallOption) (*GetDataResponse, error)
+	ChangeMode(ctx context.Context, in *ChangeModRequest, opts ...grpc.CallOption) (*ChangeModResponse, error)
 }
 
 type wetSensorServiceClient struct {
@@ -47,11 +49,22 @@ func (c *wetSensorServiceClient) GetData(ctx context.Context, in *GetDataRequest
 	return out, nil
 }
 
+func (c *wetSensorServiceClient) ChangeMode(ctx context.Context, in *ChangeModRequest, opts ...grpc.CallOption) (*ChangeModResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ChangeModResponse)
+	err := c.cc.Invoke(ctx, WetSensorService_ChangeMode_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // WetSensorServiceServer is the server API for WetSensorService service.
 // All implementations must embed UnimplementedWetSensorServiceServer
 // for forward compatibility.
 type WetSensorServiceServer interface {
 	GetData(context.Context, *GetDataRequest) (*GetDataResponse, error)
+	ChangeMode(context.Context, *ChangeModRequest) (*ChangeModResponse, error)
 	mustEmbedUnimplementedWetSensorServiceServer()
 }
 
@@ -64,6 +77,9 @@ type UnimplementedWetSensorServiceServer struct{}
 
 func (UnimplementedWetSensorServiceServer) GetData(context.Context, *GetDataRequest) (*GetDataResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetData not implemented")
+}
+func (UnimplementedWetSensorServiceServer) ChangeMode(context.Context, *ChangeModRequest) (*ChangeModResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ChangeMode not implemented")
 }
 func (UnimplementedWetSensorServiceServer) mustEmbedUnimplementedWetSensorServiceServer() {}
 func (UnimplementedWetSensorServiceServer) testEmbeddedByValue()                          {}
@@ -104,6 +120,24 @@ func _WetSensorService_GetData_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _WetSensorService_ChangeMode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ChangeModRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WetSensorServiceServer).ChangeMode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WetSensorService_ChangeMode_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WetSensorServiceServer).ChangeMode(ctx, req.(*ChangeModRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // WetSensorService_ServiceDesc is the grpc.ServiceDesc for WetSensorService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +148,10 @@ var WetSensorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetData",
 			Handler:    _WetSensorService_GetData_Handler,
+		},
+		{
+			MethodName: "ChangeMode",
+			Handler:    _WetSensorService_ChangeMode_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
