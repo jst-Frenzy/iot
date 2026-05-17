@@ -177,7 +177,7 @@ const file_api_grpc_proto_fan_proto_rawDesc = "" +
 	"OffRequest\"\r\n" +
 	"\vOffResponse2]\n" +
 	"\n" +
-	"fanService\x12%\n" +
+	"FanService\x12%\n" +
 	"\x02On\x12\x0e.fan.OnRequest\x1a\x0f.fan.OnResponse\x12(\n" +
 	"\x03Off\x12\x0f.fan.OffRequest\x1a\x10.fan.OffResponseB8Z6github.com/jst-Frenzy/iot/backend/fan/api/grpc/gen;fanb\x06proto3"
 
@@ -201,10 +201,10 @@ var file_api_grpc_proto_fan_proto_goTypes = []any{
 	(*OffResponse)(nil), // 3: fan.OffResponse
 }
 var file_api_grpc_proto_fan_proto_depIdxs = []int32{
-	0, // 0: fan.fanService.On:input_type -> fan.OnRequest
-	2, // 1: fan.fanService.Off:input_type -> fan.OffRequest
-	1, // 2: fan.fanService.On:output_type -> fan.OnResponse
-	3, // 3: fan.fanService.Off:output_type -> fan.OffResponse
+	0, // 0: fan.FanService.On:input_type -> fan.OnRequest
+	2, // 1: fan.FanService.Off:input_type -> fan.OffRequest
+	1, // 2: fan.FanService.On:output_type -> fan.OnResponse
+	3, // 3: fan.FanService.Off:output_type -> fan.OffResponse
 	2, // [2:4] is the sub-list for method output_type
 	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

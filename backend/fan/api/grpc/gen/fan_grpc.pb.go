@@ -19,8 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	FanService_On_FullMethodName  = "/fan.fanService/On"
-	FanService_Off_FullMethodName = "/fan.fanService/Off"
+	FanService_On_FullMethodName  = "/fan.FanService/On"
+	FanService_Off_FullMethodName = "/fan.FanService/Off"
 )
 
 // FanServiceClient is the client API for FanService service.
@@ -142,7 +142,7 @@ func _FanService_Off_Handler(srv interface{}, ctx context.Context, dec func(inte
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var FanService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "fan.fanService",
+	ServiceName: "fan.FanService",
 	HandlerType: (*FanServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

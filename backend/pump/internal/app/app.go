@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/jst-Frenzy/iot/backend/pump/internal/config/configuration"
 	"github.com/jst-Frenzy/iot/backend/pump/internal/infra/grpc"
+	"github.com/jst-Frenzy/iot/backend/pump/internal/infra/grpc/services"
 	"log/slog"
 	"sync"
 )
@@ -17,6 +18,9 @@ func New(ctx context.Context, conf *configuration.Config) (*App, error) {
 	grpcServer, err := grpc.New(&grpc.Deps{
 		Conf:   conf.GRPCServer,
 		Logger: slog.With("server", "grpcServer"),
+		Services: []grpc.Service{
+			services.New(),
+		},
 	})
 	if err != nil {
 		return nil, fmt.Errorf("cannot create grpcServer: %w", err)

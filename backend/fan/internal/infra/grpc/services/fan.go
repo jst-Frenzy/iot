@@ -7,23 +7,12 @@ import (
 	"log/slog"
 )
 
-type device interface {
-	GenerateData() int32
-}
-
-type FanDeps struct {
-	Device device
-}
-
 type Fan struct {
 	pb.UnimplementedFanServiceServer
-	device device
 }
 
-func New(d *FanDeps) *Fan {
-	return &Fan{
-		device: d.Device,
-	}
+func New() *Fan {
+	return &Fan{}
 }
 
 func (f *Fan) Register(server *grpc.Server) {

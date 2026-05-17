@@ -18,6 +18,7 @@ import (
 
 type App struct {
 	grpcServer *grpc.Server
+	dataSender *ws.Server
 }
 
 func New(conf *configuration.Config, cred *credentials.Credentials) (*App, error) {
@@ -58,17 +59,26 @@ func New(conf *configuration.Config, cred *credentials.Credentials) (*App, error
 
 	return &App{
 		grpcServer: grpcServer,
+		dataSender: dataSender,
 	}, nil
 }
 
 func (a *App) Start(ctx context.Context) error {
-	errChan := make(chan error, 1)
+	errChan := make(chan error, 2)
 	wg := sync.WaitGroup{}
 
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
 		if err := a.grpcServer.Start(ctx); err != nil {
+			errChan <- err
+		}
+	}()
+
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		if err := a.dataSender.Start(ctx); err != nil {
 			errChan <- err
 		}
 	}()

@@ -7,35 +7,24 @@ import (
 	"log/slog"
 )
 
-type device interface {
-	GenerateData() int32
+type Pump struct {
+	pb.UnimplementedPumpServiceServer
 }
 
-type FanDeps struct {
-	Device device
+func New() *Pump {
+	return &Pump{}
 }
 
-type Fan struct {
-	pb.UnimplementedFanServiceServer
-	device device
+func (f *Pump) Register(server *grpc.Server) {
+	pb.RegisterPumpServiceServer(server, f)
 }
 
-func New(d *FanDeps) *Fan {
-	return &Fan{
-		device: d.Device,
-	}
-}
-
-func (f *Fan) Register(server *grpc.Server) {
-	pb.RegisterFanServiceServer(server, f)
-}
-
-func (f *Fan) On(ctx context.Context, request *pb.OnRequest) (*pb.OnResponse, error) {
+func (f *Pump) On(ctx context.Context, request *pb.OnRequest) (*pb.OnResponse, error) {
 	slog.Info("On")
 	return &pb.OnResponse{}, nil
 }
 
-func (f *Fan) Off(ctx context.Context, request *pb.OffRequest) (*pb.OffResponse, error) {
+func (f *Pump) Off(ctx context.Context, request *pb.OffRequest) (*pb.OffResponse, error) {
 	slog.Info("Off")
 	return &pb.OffResponse{}, nil
 }

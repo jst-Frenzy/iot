@@ -5,8 +5,8 @@ go 1.26.2
 require (
 	github.com/go-playground/validator/v10 v10.30.2
 	github.com/jst-Frenzy/iot/backend/dataIntegrator v0.0.0-20260517184243-4a52cb749769
-	github.com/jst-Frenzy/iot/backend/fan v0.0.0-20260517142446-d1d12b63525a
-	github.com/jst-Frenzy/iot/backend/pump v0.0.0-20260517145812-63d19ec4e6de
+	github.com/jst-Frenzy/iot/backend/fan v0.0.0-20260517184848-eb4fb82089d0
+	github.com/jst-Frenzy/iot/backend/pump v0.0.0-20260517184848-eb4fb82089d0
 	github.com/jst-Frenzy/iot/backend/temperatureSensor v0.0.0-20260517184243-4a52cb749769
 	github.com/jst-Frenzy/iot/backend/wetSensor v0.0.0-20260517184243-4a52cb749769
 	github.com/spf13/viper v1.21.0
