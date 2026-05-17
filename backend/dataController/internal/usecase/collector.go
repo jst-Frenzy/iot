@@ -2,6 +2,7 @@ package usecase
 
 import (
 	"context"
+	"fmt"
 	"log/slog"
 	"time"
 )
@@ -67,6 +68,8 @@ func (c *Collector) Start(ctx context.Context) {
 				c.logger.Error("cant get temperature", "error", err)
 				continue
 			}
+
+			fmt.Println("wet: ", wet, "temperature: ", temperature)
 
 			err = c.dataSender.SendData(ctx, wet, temperature)
 			if err != nil {

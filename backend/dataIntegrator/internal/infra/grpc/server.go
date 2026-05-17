@@ -25,14 +25,12 @@ type Server struct {
 }
 
 type Deps struct {
-	Conf     configuration.GRPCServer `validate:"required"`
-	Logger   *slog.Logger             `validate:"required"`
+	Conf     *configuration.GRPCServer `validate:"required"`
+	Logger   *slog.Logger              `validate:"required"`
 	Services []Service
 }
 
 func New(dep *Deps) (*Server, error) {
-	//todo: validation
-
 	srv := grpc.NewServer(
 		grpc.MaxRecvMsgSize(dep.Conf.MaxReceiveMsgSize),
 		grpc.MaxSendMsgSize(dep.Conf.MaxSendMsgSize),

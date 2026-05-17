@@ -2,8 +2,6 @@ package configuration
 
 import (
 	"fmt"
-	"time"
-
 	"github.com/go-playground/validator/v10"
 
 	"github.com/spf13/viper"
@@ -12,16 +10,12 @@ import (
 const _defaultConfigPath = "config.yaml"
 
 type Config struct {
+	GRPCServer *GRPCServer `mapstructure:"GRPCServer" validate:"required"`
+	WsServer   *WsServer   `mapstructure:"WsServer" validate:"required"`
 }
 
-type RESTServer struct {
-	ListenPort        string        `mapstructure:"ListenPort"        validate:"required"`
-	ReadTimeout       time.Duration `mapstructure:"ReadTimeout"       validate:"required"`
-	WriteTimeout      time.Duration `mapstructure:"WriteTimeout"      validate:"required"`
-	ShutdownTimeout   time.Duration `mapstructure:"ShutdownTimeout"   validate:"required"`
-	ReadHeaderTimeout time.Duration `mapstructure:"ReadHeaderTimeout" validate:"required"`
-	IdleTimeout       time.Duration `mapstructure:"IdleTimeout"       validate:"required"`
-	MaxHeaderBytes    int           `mapstructure:"MaxHeaderBytes"    validate:"required"`
+type WsServer struct {
+	Address string `mapstructure:"Address" validate:"required"`
 }
 
 type GRPCServer struct {

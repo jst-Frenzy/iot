@@ -2,8 +2,6 @@ package credentials
 
 import (
 	"fmt"
-	"time"
-
 	"github.com/go-playground/validator/v10"
 
 	"github.com/spf13/viper"
@@ -12,15 +10,13 @@ import (
 const _defaultCredentialsPath = "credentials.yaml"
 
 type Credentials struct {
-	PostgresDSN string `mapstructure:"PostgresDSN" validate:"required"`
+	PostgresDSN    string      `mapstructure:"PostgresDSN" validate:"required"`
+	DataController *GrpcClient `mapstructure:"DataController" validate:"required"`
 }
 
 type GrpcClient struct {
-	Address        string        `mapstructure:"Address" validate:"required"`
-	MaxMessageSize int           `mapstructure:"MaxMessageSize"`
-	RetryAttempts  int           `mapstructure:"RetryAttempts"`
-	MinRetryTime   time.Duration `mapstructure:"MinRetryTime"`
-	MaxRetryTime   time.Duration `mapstructure:"MaxRetryTime"`
+	Address        string `mapstructure:"Address" validate:"required"`
+	MaxMessageSize int    `mapstructure:"MaxMessageSize"`
 }
 
 func New() (*Credentials, error) {
