@@ -103,6 +103,24 @@ services:
     networks:
       - iot-network
 
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+
+    container_name: iot-frontend
+
+    ports:
+      - "3000:80"
+
+    depends_on:
+      - data-integrator
+
+    networks:
+      - iot-network
+
+     
+
 volumes:
   postgres_data:
 
