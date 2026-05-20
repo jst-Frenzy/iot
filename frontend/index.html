@@ -2,416 +2,194 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
-
-  <title>Автоматическая теплица</title>
-
-  <link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
-  />
-
-  <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
-  />
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Автоматическая теплица | Оазис</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
   <link rel="stylesheet" href="./style.css" />
 </head>
-
 <body>
 
-  <div class="background"></div>
-  <div class="background-overlay"></div>
+<div class="background"></div>
+<div class="background-overlay"></div>
 
-  <!-- HEADER -->
+<header class="topbar">
+  <div class="title-block">
+    <div class="green-dot"></div>
+    <div>
+      <div class="system-label">SMART GREENHOUSE CONTROL</div>
+      <h1>Автоматическая теплица</h1>
+    </div>
+  </div>
+  <div class="top-right">
+    <div class="server-status">
+      <div class="status-dot"></div>
+      <span id="serverStatusText">Сервер подключен</span>
+    </div>
+    <div id="clock" class="clock"></div>
+  </div>
+</header>
 
-  <header class="topbar">
+<main class="dashboard">
+  <section class="hero-banner">
+    <img src="./assets/greenhouse.png" class="hero-bg" alt="greenhouse" />
+    <div class="hero-overlay">
+      <h2>Главная панель управления</h2>
+      <p>Активных устройств: <span id="devicesCount">4</span></p>
+    </div>
+  </section>
 
-    <div class="title-block">
-
-      <div class="green-dot"></div>
-
-      <div>
-
-        <div class="system-label">
-          SMART GREENHOUSE CONTROL
+  <div class="main-layout">
+    <div class="left-column">
+      <div class="section-header">
+        <div class="section-line"></div>
+        <div class="section-title">ДАТЧИКИ</div>
+      </div>
+      <div class="sensors-grid">
+        <div class="sensor-card">
+          <div class="sensor-top">
+            <div>
+              <div class="sensor-name">🌡️ Температура</div>
+              <div id="temperatureState" class="sensor-state">НОРМА</div>
+            </div>
+            <div id="temperatureValue" class="sensor-big">22<span>°C</span></div>
+          </div>
+          <div class="visual-scale">
+            <div class="scale-lines"><div></div><div></div><div></div><div></div></div>
+            <div id="tempIndicator" class="scale-indicator red" style="width:55%;"></div>
+          </div>
+          <div class="sensor-bottom">
+            <div class="sensor-info">Контроль климата теплицы</div>
+            <div class="sensor-dot"></div>
+          </div>
         </div>
-
-        <h1>
-          Автоматическая теплица
-        </h1>
-
+        <div class="sensor-card">
+          <div class="sensor-top">
+            <div>
+              <div class="sensor-name">💧 Влажность</div>
+              <div id="humidityState" class="sensor-state">НОРМА</div>
+            </div>
+            <div id="humidityValue" class="sensor-big">55<span>%</span></div>
+          </div>
+          <div class="visual-scale">
+            <div class="scale-lines"><div></div><div></div><div></div><div></div></div>
+            <div id="humIndicator" class="scale-indicator blue" style="width:55%;"></div>
+          </div>
+          <div class="sensor-bottom">
+            <div class="sensor-info">Контроль влажности почвы</div>
+            <div class="sensor-dot blue"></div>
+          </div>
+        </div>
       </div>
 
+      <div class="section-header">
+        <div class="section-line"></div>
+        <div class="section-title">УСТРОЙСТВА</div>
+      </div>
+      <div class="devices-grid">
+        <div class="device-card">
+          <div class="device-left">
+            <svg viewBox="0 0 100 100" class="fan-svg">
+              <circle cx="50" cy="50" r="45" stroke="rgba(255,255,255,0.08)" stroke-width="4" fill="#0d1622" />
+              <g id="fanBlades">
+                <path d="M50 50 L50 15 A35 35 0 0 1 75 25 Z" fill="#42ff9c" />
+                <path d="M50 50 L85 50 A35 35 0 0 1 75 75 Z" fill="#42ff9c" />
+                <path d="M50 50 L50 85 A35 35 0 0 1 25 75 Z" fill="#42ff9c" />
+                <path d="M50 50 L15 50 A35 35 0 0 1 25 25 Z" fill="#42ff9c" />
+              </g>
+              <circle cx="50" cy="50" r="10" fill="#1b2b3f" />
+            </svg>
+          </div>
+          <div class="device-right">
+            <div class="device-head">
+              <div class="device-name">🌀 Вентиляция</div>
+              <div id="fanStatus" class="device-badge off">OFF</div>
+            </div>
+            <div id="fanStateTitle" class="device-title">Ожидание</div>
+            <div id="fanStateDesc" class="device-desc">Включится при > 28°C</div>
+          </div>
+        </div>
+        <div class="device-card">
+          <div class="device-left">
+            <svg viewBox="0 0 100 100" class="pump-svg">
+              <path d="M50 15 C 50 15, 20 50, 20 75 A 30 30 0 0 0 80 75 C 80 50, 50 15, 50 15 Z" fill="#0d1622" stroke="rgba(255,255,255,0.08)" stroke-width="4" />
+              <g id="waterLevel">
+                <path d="M50 35 C 50 35, 25 60, 25 75 A 25 25 0 0 0 75 75 C 75 60, 50 35, 50 35 Z" fill="#38bdf8" />
+              </g>
+            </svg>
+          </div>
+          <div class="device-right">
+            <div class="device-head">
+              <div class="device-name">💦 Полив</div>
+              <div id="pumpStatus" class="device-badge off">OFF</div>
+            </div>
+            <div id="pumpStateTitle" class="device-title">Ожидание</div>
+            <div id="pumpStateDesc" class="device-desc">Включится при < 40%</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="top-right">
-
-      <div class="server-status">
-
-        <div class="status-dot"></div>
-
-        <span id="serverStatusText">
-          Сервер подключен
-        </span>
-
-      </div>
-
-      <div id="clock" class="clock"></div>
-
-    </div>
-
-  </header>
-
-  <!-- MAIN -->
-
-  <main class="dashboard">
-
-    <!-- CENTER -->
-
-    <section class="main-visual">
-
-      <div class="greenhouse-card">
-
-        <img
-          src="./assets/greenhouse.png"
-          class="greenhouse-image"
-          alt="greenhouse"
-        />
-
-        <div class="image-overlay"></div>
-
-        <!-- FAN -->
-
-        <div class="device-card fan-card">
-
-          <div class="device-header">
-
-            <div>
-              <div class="device-title">
-                Вентиляция
-              </div>
-
-              <div
-                id="fanStateText"
-                class="device-subtitle"
-              >
-                Ожидание
-              </div>
-            </div>
-
-            <div
-              id="fanStatus"
-              class="status-badge off"
-            >
-              OFF
-            </div>
-
-          </div>
-
-          <div class="fan-wrapper">
-
-            <img
-              id="fanImage"
-              src="./assets/fan.png"
-              class="fan-image"
-              alt="fan"
-            />
-
-            <div
-              id="fanGlow"
-              class="fan-glow"
-            ></div>
-
-          </div>
-
-        </div>
-
-        <!-- PUMP -->
-
-        <div class="device-card pump-card">
-
-          <div class="device-header">
-
-            <div>
-
-              <div class="device-title">
-                Полив
-              </div>
-
-              <div
-                id="pumpStateText"
-                class="device-subtitle"
-              >
-                Ожидание
-              </div>
-
-            </div>
-
-            <div
-              id="pumpStatus"
-              class="status-badge off"
-            >
-              OFF
-            </div>
-
-          </div>
-
-          <div class="pump-wrapper">
-
-            <img
-              src="./assets/pump.png"
-              class="pump-image"
-              alt="pump"
-            />
-
-            <div
-              id="waterDrops"
-              class="water-drops"
-            >
-
-              <span></span>
-              <span></span>
-              <span></span>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <!-- LIVE INFO -->
-
-        <div class="live-info">
-
-          <div class="live-box">
-
-            <div class="live-label">
-              WEBSOCKET
-            </div>
-
-            <div
-              id="wsStatus"
-              class="live-value connected"
-            >
-              CONNECTED
-            </div>
-
-          </div>
-
-          <div class="live-box">
-
-            <div class="live-label">
-              УСТРОЙСТВ
-            </div>
-
-            <div
-              id="devicesCount"
-              class="live-value"
-            >
-              4
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- CHART -->
-
-      <div class="chart-card">
-
-        <div class="chart-top">
-
-          <div>
-
-            <div class="chart-label">
-              ИСТОРИЯ ТЕЛЕМЕТРИИ
-            </div>
-
-            <h2>
-              Аналитика датчиков
-            </h2>
-
-          </div>
-
-          <div class="filters">
-
-            <button
-              class="range-btn active"
-              data-hours="1"
-            >
-              1Ч
-            </button>
-
-            <button
-              class="range-btn"
-              data-hours="6"
-            >
-              6Ч
-            </button>
-
-            <button
-              class="range-btn"
-              data-hours="12"
-            >
-              12Ч
-            </button>
-
-            <button
-              class="range-btn"
-              data-hours="24"
-            >
-              24Ч
-            </button>
-
-          </div>
-
-        </div>
-
-        <canvas id="telemetryChart"></canvas>
-
-      </div>
-
-    </section>
-
-    <!-- RIGHT -->
-
-    <aside class="sidebar">
-
-      <!-- TEMPERATURE -->
-
-      <div class="sensor-card temp-card">
-
-        <div class="sensor-title">
-          ДАТЧИК ТЕМПЕРАТУРЫ
-        </div>
-
-        <div class="sensor-content">
-
-          <div class="thermometer">
-
-            <div
-              id="tempFill"
-              class="thermo-fill"
-            ></div>
-
-          </div>
-
-          <div>
-
-            <div
-              id="temperatureValue"
-              class="sensor-value red"
-            >
-              0°C
-            </div>
-
-            <div
-              id="temperatureState"
-              class="sensor-status red-status"
-            >
-              НОРМА
-            </div>
-
-            <div class="sensor-meta">
-              Состояние:
-              <span>АКТИВЕН</span>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- HUMIDITY -->
-
-      <div class="sensor-card humidity-card">
-
-        <div class="sensor-title">
-          ДАТЧИК ВЛАЖНОСТИ ПОЧВЫ
-        </div>
-
-        <div class="sensor-content">
-
-          <div class="humidity-tank">
-
-            <div
-              id="humidityFill"
-              class="humidity-fill"
-            ></div>
-
-          </div>
-
-          <div>
-
-            <div
-              id="humidityValue"
-              class="sensor-value blue"
-            >
-              0%
-            </div>
-
-            <div
-              id="humidityState"
-              class="sensor-status blue-status"
-            >
-              НОРМА
-            </div>
-
-            <div class="sensor-meta">
-              Состояние:
-              <span>АКТИВЕН</span>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- EVENTS -->
-
+    <div class="right-column">
       <div class="events-card">
-
-        <div class="events-top">
-
-          <div class="chart-label">
-            LIVE EVENTS
+        <div class="card-header">
+          <div>
+            <div class="chart-label">LIVE EVENTS</div>
+            <h2>События системы</h2>
           </div>
-
-          <h2>
-            События системы
-          </h2>
-
         </div>
-
-        <div
-          id="eventFeed"
-          class="event-feed"
-        ></div>
-
+        <div id="eventFeed" class="event-feed"></div>
       </div>
+    </div>
+  </div>
 
-    </aside>
+  <div class="bottom-layout">
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-label">ИСТОРИЯ ТЕЛЕМЕТРИИ</div>
+          <h2>Аналитика показателей</h2>
+        </div>
+        <div class="chart-periods" id="periodButtons">
+          <button class="period-btn" data-hours="0.5">30 мин</button>
+          <button class="period-btn active" data-hours="1">1 час</button>
+          <button class="period-btn" data-hours="3">3 часа</button>
+          <button class="period-btn" data-hours="6">6 часов</button>
+          <button class="period-btn" data-hours="12">12 часов</button>
+          <button class="period-btn" data-hours="24">24 часа</button>
+        </div>
+      </div>
+      <div class="chart-container">
+        <canvas id="telemetryChart"></canvas>
+      </div>
+    </div>
 
-  </main>
+    <div class="system-info-card">
+      <div class="system-info-title">Состояние системы</div>
+      <div class="system-info-grid">
+        <div class="info-box">
+          <div class="info-label">Температура</div>
+          <div id="miniTemp" class="info-value red">22°C</div>
+        </div>
+        <div class="info-box">
+          <div class="info-label">Влажность</div>
+          <div id="miniHum" class="info-value blue">55%</div>
+        </div>
+        <div class="info-box">
+          <div class="info-label">Вентиляция</div>
+          <div id="miniFan" class="info-value">OFF</div>
+        </div>
+        <div class="info-box">
+          <div class="info-label">Полив</div>
+          <div id="miniPump" class="info-value">OFF</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
 
-  <script src="./app.js"></script>
-
+<script src="./app.js"></script>
 </body>
 </html>
