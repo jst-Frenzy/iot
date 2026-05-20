@@ -12,6 +12,8 @@ import (
 type processor interface {
 	GetDevices() ([]usecase.Device, error)
 	GetTelemetryByPeriod(deviceName string, from time.Time, to time.Time) ([]usecase.Telemetry, error)
+	ChangeFanMode() error
+	ChangePumpMode() error
 }
 
 type Handler struct {
@@ -29,8 +31,15 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 	api := router.Group("/api")
 	{
-		api.GET("/devices", h.getDevices)
+		devices := api.Group("/devices")
+		{
+			devices.GET("/", h.getDevices)
+			devices.GET("/changeFanMode", h.ChangeFanMode)
+			devices.GET("/changePumpMode", h.ChangePumpMode)
+		}
+
 		api.GET("/telemetry", h.getTelemetryByPeriod)
+
 	}
 
 	return router
@@ -100,4 +109,28 @@ func (h *Handler) getTelemetryByPeriod(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"telemetry": telemetry,
 	})
+}
+
+func (h *Handler) ChangeFanMode(c *gin.Context) {
+	err := h.processor.ChangeFanMode()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{})
+}
+
+func (h *Handler) ChangePumpMode(c *gin.Context) {
+	err := h.processor.ChangePumpMode()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{})
 }

@@ -3,6 +3,7 @@ package usecase
 import (
 	"context"
 	"fmt"
+	"sync"
 	"time"
 
 	"github.com/jst-Frenzy/iot/backend/dataIntegrator/internal/infra/ws"
@@ -64,11 +65,12 @@ type ProcessorDeps struct {
 }
 
 type Processor struct {
-	isFreezing          bool
-	isWetting           bool
+	fanEnabled          bool
+	pumpEnabled         bool
 	telemetryRepository telemetryRepository
 	dataSender          dataSender
 	controllerManager   controllerManager
+	mutex               sync.RWMutex
 }
 
 func NewProcessor(d *ProcessorDeps) *Processor {
@@ -95,60 +97,12 @@ func (p *Processor) Process(ctx context.Context, wet, temperature int32) error {
 		Wet:         wet,
 	})
 
-	if !p.isFreezing && temperature > maxTemperature {
-		err := p.controllerManager.OnFan(ctx)
-		if err != nil {
-			return fmt.Errorf("cannot turn on fan: %w", err)
-		}
-
-		err = p.telemetryRepository.InsertAction(ActionTypeOn, DeviceFan)
-		if err != nil {
-			return fmt.Errorf("cannot insert action: %w", err)
-		}
-
-		p.isFreezing = true
+	if err := p.processFan(ctx, temperature); err != nil {
+		return err
 	}
 
-	if p.isFreezing && temperature < minTemperature {
-		err := p.controllerManager.OffFan(ctx)
-		if err != nil {
-			return fmt.Errorf("cannot turn off fan: %w", err)
-		}
-
-		err = p.telemetryRepository.InsertAction(ActionTypeOff, DeviceFan)
-		if err != nil {
-			return fmt.Errorf("cannot insert action: %w", err)
-		}
-
-		p.isFreezing = false
-	}
-
-	if !p.isWetting && wet < minWet {
-		err := p.controllerManager.OnPump(ctx)
-		if err != nil {
-			return fmt.Errorf("cannot turn on pump: %w", err)
-		}
-
-		err = p.telemetryRepository.InsertAction(ActionTypeOn, DevicePump)
-		if err != nil {
-			return fmt.Errorf("cannot insert action: %w", err)
-		}
-
-		p.isWetting = true
-	}
-
-	if p.isWetting && wet > maxWet {
-		err := p.controllerManager.OffPump(ctx)
-		if err != nil {
-			return fmt.Errorf("cannot turn off pump: %w", err)
-		}
-
-		err = p.telemetryRepository.InsertAction(ActionTypeOff, DeviceFan)
-		if err != nil {
-			return fmt.Errorf("cannot insert action: %w", err)
-		}
-
-		p.isWetting = false
+	if err := p.processPump(ctx, wet); err != nil {
+		return err
 	}
 
 	return nil
@@ -160,4 +114,186 @@ func (p *Processor) GetDevices() ([]Device, error) {
 
 func (p *Processor) GetTelemetryByPeriod(deviceName string, from time.Time, to time.Time) ([]Telemetry, error) {
 	return p.telemetryRepository.GetTelemetryByPeriod(deviceName, from, to)
+}
+
+func (p *Processor) processFan(
+	ctx context.Context,
+	temperature int32,
+) error {
+	switch {
+	case temperature > maxTemperature:
+		return p.enableFan(ctx)
+
+	case temperature < minTemperature:
+		return p.disableFan(ctx)
+	}
+
+	return nil
+}
+
+func (p *Processor) processPump(
+	ctx context.Context,
+	wet int32,
+) error {
+	switch {
+	case wet < minWet:
+		return p.enablePump(ctx)
+
+	case wet > maxWet:
+		return p.disablePump(ctx)
+	}
+
+	return nil
+}
+
+func (p *Processor) ChangeFanMode() error {
+	p.mutex.RLock()
+	enabled := p.fanEnabled
+	p.mutex.RUnlock()
+
+	if enabled {
+		return p.disableFan(context.Background())
+	}
+
+	return p.enableFan(context.Background())
+}
+
+func (p *Processor) ChangePumpMode() error {
+	p.mutex.RLock()
+	enabled := p.pumpEnabled
+	p.mutex.RUnlock()
+
+	if enabled {
+		return p.disablePump(context.Background())
+	}
+
+	return p.enablePump(context.Background())
+}
+
+func (p *Processor) enableFan(ctx context.Context) error {
+	p.mutex.Lock()
+
+	if p.fanEnabled {
+		p.mutex.Unlock()
+		return nil
+	}
+
+	p.fanEnabled = true
+	p.mutex.Unlock()
+
+	if err := p.controllerManager.OnFan(ctx); err != nil {
+		p.mutex.Lock()
+		p.fanEnabled = false
+		p.mutex.Unlock()
+
+		return fmt.Errorf("cannot turn on fan: %w", err)
+	}
+
+	if err := p.telemetryRepository.InsertAction(
+		ActionTypeOn,
+		DeviceFan,
+	); err != nil {
+		return fmt.Errorf(
+			"cannot insert fan on action: %w",
+			err,
+		)
+	}
+
+	return nil
+}
+
+func (p *Processor) disableFan(ctx context.Context) error {
+	p.mutex.Lock()
+
+	if !p.fanEnabled {
+		p.mutex.Unlock()
+		return nil
+	}
+
+	p.fanEnabled = false
+	p.mutex.Unlock()
+
+	if err := p.controllerManager.OffFan(ctx); err != nil {
+		p.mutex.Lock()
+		p.fanEnabled = true
+		p.mutex.Unlock()
+
+		return fmt.Errorf("cannot turn off fan: %w", err)
+	}
+
+	if err := p.telemetryRepository.InsertAction(
+		ActionTypeOff,
+		DeviceFan,
+	); err != nil {
+		return fmt.Errorf(
+			"cannot insert fan off action: %w",
+			err,
+		)
+	}
+
+	return nil
+}
+
+func (p *Processor) enablePump(ctx context.Context) error {
+	p.mutex.Lock()
+
+	if p.pumpEnabled {
+		p.mutex.Unlock()
+		return nil
+	}
+
+	p.pumpEnabled = true
+	p.mutex.Unlock()
+
+	if err := p.controllerManager.OnPump(ctx); err != nil {
+		p.mutex.Lock()
+		p.pumpEnabled = false
+		p.mutex.Unlock()
+
+		return fmt.Errorf("cannot turn on pump: %w", err)
+	}
+
+	if err := p.telemetryRepository.InsertAction(
+		ActionTypeOn,
+		DevicePump,
+	); err != nil {
+		return fmt.Errorf(
+			"cannot insert pump on action: %w",
+			err,
+		)
+	}
+
+	return nil
+}
+
+func (p *Processor) disablePump(ctx context.Context) error {
+	p.mutex.Lock()
+
+	if !p.pumpEnabled {
+		p.mutex.Unlock()
+		return nil
+	}
+
+	p.pumpEnabled = false
+	p.mutex.Unlock()
+
+	if err := p.controllerManager.OffPump(ctx); err != nil {
+		p.mutex.Lock()
+		p.pumpEnabled = true
+		p.mutex.Unlock()
+
+		return fmt.Errorf("cannot turn off pump: %w", err)
+	}
+
+	if err := p.telemetryRepository.InsertAction(
+		ActionTypeOff,
+		DevicePump,
+	); err != nil {
+		return fmt.Errorf(
+			"cannot insert pump off action: %w",
+			err,
+		)
+	}
+
+	return nil
 }
