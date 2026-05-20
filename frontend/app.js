@@ -65,9 +65,9 @@ function addEvent(text) {
   while (eventFeed.children.length > 40) eventFeed.removeChild(eventFeed.lastChild);
 }
 
-/* MINI INFO (с цветами для ON/OFF) */
+/* MINI INFO */
 function updateMiniInfo() {
-  if (miniTemp) miniTemp.innerText = `${Math.round(currentTemperature)}°C`; // целое число
+  if (miniTemp) miniTemp.innerText = `${Math.round(currentTemperature)}°C`; 
   if (miniHum) miniHum.innerText = `${Math.round(currentHumidity)}%`;
   
   if (miniFan) {
@@ -82,7 +82,6 @@ function updateMiniInfo() {
 
 /* SENSOR UPDATE */
 function updateSensors() {
-  // температура – целое число без точки
   if (tempValue) tempValue.innerHTML = `${Math.round(currentTemperature)}<span>°C</span>`;
   if (humidityValue) humidityValue.innerHTML = `${Math.round(currentHumidity)}<span>%</span>`;
 
@@ -201,7 +200,7 @@ function addDataPoint(timestamp, temperature, humidity) {
   updateChartZoom();
 }
 
-/* ЗАГРУЗКА ИСТОРИИ (один раз за 24 часа) */
+/* ЗАГРУЗКА ИСТОРИИ  */
 async function fetchDeviceData(deviceName, from, to) {
   const url = `${API_URL}?device_name=${encodeURIComponent(deviceName)}&from=${toISOString(from)}&to=${toISOString(to)}`;
   try {
@@ -252,7 +251,7 @@ async function loadDevices() {
   } catch (e) { console.error('Devices error:', e); }
 }
 
-/* КНОПКИ ПЕРИОДОВ (только масштаб, без логов) */
+/* КНОПКИ ПЕРИОДОВ */
 function initPeriodButtons() {
   const buttons = document.querySelectorAll('.period-btn');
   const setActive = (activeBtn) => {
@@ -266,7 +265,6 @@ function initPeriodButtons() {
       currentZoomHours = hours;
       setActive(btn);
       updateChartZoom();
-      // событие в лог НЕ добавляем
     });
   });
 }

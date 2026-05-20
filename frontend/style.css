@@ -416,7 +416,7 @@ body {
   to { transform: rotate(360deg); }
 }
 
-/* АНИМАЦИЯ КАПЛИ – плавная пульсация */
+/* Water */
 .pump-pulse {
   transform-origin: center;
   animation: waterPulse 1s ease-in-out infinite;
