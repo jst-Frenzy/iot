@@ -107,19 +107,16 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-
     container_name: iot-frontend
-
     ports:
       - "3000:80"
-
     depends_on:
       - data-integrator
-
+    command: sh -c "sleep 10 && nginx -g 'daemon off;'"
     networks:
       - iot-network
 
-     
+
 
 volumes:
   postgres_data:
