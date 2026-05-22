@@ -3,6 +3,7 @@ package usecase
 import (
 	"context"
 	"fmt"
+	"log/slog"
 	"sync"
 	"time"
 
@@ -45,6 +46,7 @@ type telemetryRepository interface {
 	GetDevices() ([]Device, error)
 	GetTelemetryByPeriod(string, time.Time, time.Time) ([]Telemetry, error)
 	InsertTelemetry(Device, int32) error
+	SaveUserMove(ActionType, Device) error
 }
 
 type dataSender interface {
@@ -199,6 +201,10 @@ func (p *Processor) enableFan(ctx context.Context) error {
 		)
 	}
 
+	if err := p.telemetryRepository.SaveUserMove(ActionTypeOn, DeviceFan); err != nil {
+		slog.Error("cannot save user action", "error", err.Error())
+	}
+
 	return nil
 }
 
@@ -229,6 +235,10 @@ func (p *Processor) disableFan(ctx context.Context) error {
 			"cannot insert fan off action: %w",
 			err,
 		)
+	}
+
+	if err := p.telemetryRepository.SaveUserMove(ActionTypeOff, DeviceFan); err != nil {
+		slog.Error("cannot save user action", "error", err.Error())
 	}
 
 	return nil
@@ -263,6 +273,10 @@ func (p *Processor) enablePump(ctx context.Context) error {
 		)
 	}
 
+	if err := p.telemetryRepository.SaveUserMove(ActionTypeOn, DevicePump); err != nil {
+		slog.Error("cannot save user action", "error", err.Error())
+	}
+
 	return nil
 }
 
@@ -293,6 +307,10 @@ func (p *Processor) disablePump(ctx context.Context) error {
 			"cannot insert pump off action: %w",
 			err,
 		)
+	}
+
+	if err := p.telemetryRepository.SaveUserMove(ActionTypeOff, DevicePump); err != nil {
+		slog.Error("cannot save user action", "error", err.Error())
 	}
 
 	return nil

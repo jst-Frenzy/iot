@@ -88,3 +88,20 @@ func (p *Postgres) InsertTelemetry(deviceName usecase.Device, value int32) error
 
 	return nil
 }
+
+func (p *Postgres) SaveUserMove(action usecase.ActionType, deviceName usecase.Device) error {
+	query := `
+		INSERT INTO user_actions (action, device_name)
+		VALUES ($1, $2)
+	`
+
+	if err := p.db.Exec(
+		query,
+		action,
+		deviceName,
+	).Error; err != nil {
+		return err
+	}
+
+	return nil
+}

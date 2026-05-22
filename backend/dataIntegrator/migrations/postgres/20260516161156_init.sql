@@ -28,6 +28,13 @@ create table if not exists actions_log
     action text check (action in ('off', 'on'))
 );
 
+create table if not exists user_actions(
+    id serial primary key,
+    action text check (action in ('off', 'on')),
+    device_name text check (device_name in ('fan', 'pump')),
+    created_at timestamp default now()
+)
+
 -- +goose StatementEnd
 
 -- +goose Down
