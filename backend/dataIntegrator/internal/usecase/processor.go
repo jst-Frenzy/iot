@@ -18,6 +18,13 @@ const (
 	maxWet = 70
 )
 
+type SourceType string
+
+const (
+	SourceTypeUser   SourceType = "user"
+	SourceTypeSystem SourceType = "controller"
+)
+
 type ActionType string
 
 const (
@@ -42,7 +49,7 @@ type Telemetry struct {
 }
 
 type telemetryRepository interface {
-	InsertAction(ActionType, Device) error
+	InsertAction(ActionType, Device, SourceType) error
 	GetDevices() ([]Device, error)
 	GetTelemetryByPeriod(string, time.Time, time.Time) ([]Telemetry, error)
 	InsertTelemetry(Device, int32) error
@@ -124,10 +131,10 @@ func (p *Processor) processFan(
 ) error {
 	switch {
 	case temperature > maxTemperature:
-		return p.enableFan(ctx)
+		return p.enableFan(ctx, SourceTypeSystem)
 
 	case temperature < minTemperature:
-		return p.disableFan(ctx)
+		return p.disableFan(ctx, SourceTypeSystem)
 	}
 
 	return nil
@@ -139,10 +146,10 @@ func (p *Processor) processPump(
 ) error {
 	switch {
 	case wet < minWet:
-		return p.enablePump(ctx)
+		return p.enablePump(ctx, SourceTypeSystem)
 
 	case wet > maxWet:
-		return p.disablePump(ctx)
+		return p.disablePump(ctx, SourceTypeSystem)
 	}
 
 	return nil
@@ -154,10 +161,10 @@ func (p *Processor) ChangeFanMode() error {
 	p.mutex.RUnlock()
 
 	if enabled {
-		return p.disableFan(context.Background())
+		return p.disableFan(context.Background(), SourceTypeUser)
 	}
 
-	return p.enableFan(context.Background())
+	return p.enableFan(context.Background(), SourceTypeUser)
 }
 
 func (p *Processor) ChangePumpMode() error {
@@ -166,13 +173,13 @@ func (p *Processor) ChangePumpMode() error {
 	p.mutex.RUnlock()
 
 	if enabled {
-		return p.disablePump(context.Background())
+		return p.disablePump(context.Background(), SourceTypeUser)
 	}
 
-	return p.enablePump(context.Background())
+	return p.enablePump(context.Background(), SourceTypeUser)
 }
 
-func (p *Processor) enableFan(ctx context.Context) error {
+func (p *Processor) enableFan(ctx context.Context, source SourceType) error {
 	p.mutex.Lock()
 
 	if p.fanEnabled {
@@ -194,6 +201,7 @@ func (p *Processor) enableFan(ctx context.Context) error {
 	if err := p.telemetryRepository.InsertAction(
 		ActionTypeOn,
 		DeviceFan,
+		source,
 	); err != nil {
 		return fmt.Errorf(
 			"cannot insert fan on action: %w",
@@ -208,7 +216,7 @@ func (p *Processor) enableFan(ctx context.Context) error {
 	return nil
 }
 
-func (p *Processor) disableFan(ctx context.Context) error {
+func (p *Processor) disableFan(ctx context.Context, source SourceType) error {
 	p.mutex.Lock()
 
 	if !p.fanEnabled {
@@ -230,6 +238,7 @@ func (p *Processor) disableFan(ctx context.Context) error {
 	if err := p.telemetryRepository.InsertAction(
 		ActionTypeOff,
 		DeviceFan,
+		source,
 	); err != nil {
 		return fmt.Errorf(
 			"cannot insert fan off action: %w",
@@ -244,7 +253,7 @@ func (p *Processor) disableFan(ctx context.Context) error {
 	return nil
 }
 
-func (p *Processor) enablePump(ctx context.Context) error {
+func (p *Processor) enablePump(ctx context.Context, source SourceType) error {
 	p.mutex.Lock()
 
 	if p.pumpEnabled {
@@ -266,6 +275,7 @@ func (p *Processor) enablePump(ctx context.Context) error {
 	if err := p.telemetryRepository.InsertAction(
 		ActionTypeOn,
 		DevicePump,
+		source,
 	); err != nil {
 		return fmt.Errorf(
 			"cannot insert pump on action: %w",
@@ -280,7 +290,7 @@ func (p *Processor) enablePump(ctx context.Context) error {
 	return nil
 }
 
-func (p *Processor) disablePump(ctx context.Context) error {
+func (p *Processor) disablePump(ctx context.Context, source SourceType) error {
 	p.mutex.Lock()
 
 	if !p.pumpEnabled {
@@ -302,6 +312,7 @@ func (p *Processor) disablePump(ctx context.Context) error {
 	if err := p.telemetryRepository.InsertAction(
 		ActionTypeOff,
 		DevicePump,
+		source,
 	); err != nil {
 		return fmt.Errorf(
 			"cannot insert pump off action: %w",

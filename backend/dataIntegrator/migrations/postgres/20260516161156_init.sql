@@ -25,6 +25,7 @@ create table if not exists actions_log
 (
     id serial primary key,
     device_name text references devices(name),
+    source_name text not null,
     action text check (action in ('off', 'on'))
 );
 

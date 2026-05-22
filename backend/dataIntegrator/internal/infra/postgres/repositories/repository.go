@@ -21,13 +21,13 @@ func NewPostgres(d *PostgresDeps) *Postgres {
 	}
 }
 
-func (p *Postgres) InsertAction(action usecase.ActionType, deviceName usecase.Device) error {
+func (p *Postgres) InsertAction(action usecase.ActionType, deviceName usecase.Device, source usecase.SourceType) error {
 	query := `
-		INSERT INTO actions_log (device_name, action)
-		VALUES ($1, $2)
+		INSERT INTO actions_log (device_name, action, source_name)
+		VALUES ($1, $2, $3)
 	`
 
-	if err := p.db.Exec(query, deviceName, action).Error; err != nil {
+	if err := p.db.Exec(query, deviceName, action, source).Error; err != nil {
 		return err
 	}
 
