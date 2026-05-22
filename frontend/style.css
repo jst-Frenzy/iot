@@ -388,6 +388,42 @@ body {
   font-weight: 700;
 }
 
+.device-toggle {
+  min-width: 92px;
+  height: 44px;
+  border: none;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 1px;
+}
+
+.device-toggle.on {
+  background: rgba(66,255,156,0.18);
+  color: var(--green);
+  box-shadow:
+    0 0 18px rgba(66,255,156,0.28),
+    inset 0 0 12px rgba(66,255,156,0.08);
+}
+
+.device-toggle.off {
+  background: rgba(255,255,255,0.06);
+  color: #9bb6cf;
+}
+
+.device-toggle:hover {
+  transform: scale(1.05);
+}
+
+.device-toggle:active {
+  transform: scale(0.97);
+}
+
 .device-badge.on {
   background: rgba(66,255,156,0.16);
   color: var(--green);

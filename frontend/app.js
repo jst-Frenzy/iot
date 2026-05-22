@@ -2,6 +2,8 @@ const BASE_HOST = window.location.hostname;
 const WS_URL = `ws://${BASE_HOST}:8099/ws`;
 const API_URL = `http://${BASE_HOST}:8098/api/telemetry`;
 const DEVICES_URL = `http://${BASE_HOST}:8098/api/devices`;
+const CHANGE_FAN_MODE_URL = `http://${BASE_HOST}:8098/api/devices/changeFanMode`;
+const CHANGE_PUMP_MODE_URL = `http://${BASE_HOST}:8098/api/devices/changePumpMode`;
 
 /* GLOBAL STATE */
 let currentTemperature = 22;
@@ -131,32 +133,83 @@ function updateAutomation() {
 /* DEVICES UI */
 function renderDevices() {
   if (fanEnabled) {
-    fanStatusBadge.className = 'device-badge on';
+    fanStatusBadge.className = 'device-toggle on';
     fanStatusBadge.innerText = 'ON';
     fanStateTitle.innerText = 'Охлаждение';
     fanStateDesc.innerText = 'Отключится при < 18°C';
     fanBlades.classList.add('fan-spin');
   } else {
-    fanStatusBadge.className = 'device-badge off';
+    fanStatusBadge.className = 'device-toggle off';
     fanStatusBadge.innerText = 'OFF';
     fanStateTitle.innerText = 'Ожидание';
     fanStateDesc.innerText = 'Включится при > 28°C';
     fanBlades.classList.remove('fan-spin');
   }
   if (pumpEnabled) {
-    pumpStatusBadge.className = 'device-badge on';
+    pumpStatusBadge.className = 'device-toggle on';
     pumpStatusBadge.innerText = 'ON';
     pumpStateTitle.innerText = 'Полив активен';
     pumpStateDesc.innerText = 'Отключится при > 70%';
     waterLevel.classList.add('pump-pulse');
   } else {
-    pumpStatusBadge.className = 'device-badge off';
+    pumpStatusBadge.className = 'device-toggle off';
     pumpStatusBadge.innerText = 'OFF';
     pumpStateTitle.innerText = 'Ожидание';
     pumpStateDesc.innerText = 'Включится при < 40%';
     waterLevel.classList.remove('pump-pulse');
   }
   updateMiniInfo();
+}
+
+/* DEVICE TOGGLES */
+async function toggleFan() {
+  try {
+    const response = await fetch(CHANGE_FAN_MODE_URL, {
+      method: 'GET'
+    });
+
+    if (!response.ok) {
+      throw new Error('Ошибка переключения вентиляции');
+    }
+
+    fanEnabled = !fanEnabled;
+
+    renderDevices();
+
+    addEvent(
+      fanEnabled
+        ? '🌀 Вентиляция включена вручную'
+        : '🛑 Вентиляция выключена вручную'
+    );
+  } catch (e) {
+    console.error(e);
+    addEvent('❌ Ошибка управления вентиляцией');
+  }
+}
+
+async function togglePump() {
+  try {
+    const response = await fetch(CHANGE_PUMP_MODE_URL, {
+      method: 'GET'
+    });
+
+    if (!response.ok) {
+      throw new Error('Ошибка переключения полива');
+    }
+
+    pumpEnabled = !pumpEnabled;
+
+    renderDevices();
+
+    addEvent(
+      pumpEnabled
+        ? '💦 Полив включен вручную'
+        : '🛑 Полив выключен вручную'
+    );
+  } catch (e) {
+    console.error(e);
+    addEvent('❌ Ошибка управления поливом');
+  }
 }
 
 /* CHART INIT */
@@ -305,4 +358,11 @@ window.addEventListener('DOMContentLoaded', async () => {
   initPeriodButtons();
   connectWebSocket();
   addEvent('🌱 Система автоматической теплицы запущена');
+  if (fanStatusBadge) {
+    fanStatusBadge.addEventListener('click', toggleFan);
+  }
+
+  if (pumpStatusBadge) {
+    pumpStatusBadge.addEventListener('click', togglePump);
+  }
 });
