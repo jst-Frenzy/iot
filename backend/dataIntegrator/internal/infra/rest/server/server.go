@@ -4,9 +4,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/jst-Frenzy/iot/backend/dataIntegrator/internal/usecase"
-
 	"github.com/gin-gonic/gin"
+	"github.com/jst-Frenzy/iot/backend/dataIntegrator/internal/usecase"
 )
 
 type processor interface {
@@ -28,12 +27,25 @@ func New(processor processor) *Handler {
 
 func (h *Handler) InitRoutes() *gin.Engine {
 	router := gin.Default()
+	router.Use(func(c *gin.Context) {
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
+		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+		c.Writer.Header().Set("Access-Control-Allow-Headers", "Origin, Content-Type, Accept")
+
+		if c.Request.Method == "OPTIONS" {
+			c.AbortWithStatus(204)
+			return
+		}
+
+		c.Next()
+	})
 
 	api := router.Group("/api")
 	{
 		devices := api.Group("/devices")
 		{
 			devices.GET("/", h.getDevices)
+			devices.GET("", h.getDevices)
 			devices.GET("/changeFanMode", h.ChangeFanMode)
 			devices.GET("/changePumpMode", h.ChangePumpMode)
 		}
